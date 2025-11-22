@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "event-pages",
+  "compatibility_date": "2025-11-22",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    {
+      "pattern": "events.dues-eckert.com",
+      "custom_domain": true
+    }
+  ]
+}
