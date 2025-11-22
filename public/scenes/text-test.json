@@ -1,0 +1,183 @@
+{
+  "history": [
+    {
+      "breakpoints": [],
+      "visible": true,
+      "aspectRatio": 1,
+      "userDownsample": 1,
+      "layerType": "effect",
+      "type": "gradient",
+      "usesPingPong": false,
+      "speed": 0.5,
+      "trackMouse": 0,
+      "trackAxes": "xy",
+      "mouseMomentum": 0,
+      "texture": false,
+      "animating": false,
+      "isMask": 0,
+      "compiledFragmentShaders": [
+        "#version 300 es\nprecision highp float;in vec2 vTextureCoord;uniform vec2 uMousePos;vec3 getColor(int index) { switch(index) { case 0: return vec3(0, 0, 0); case 1: return vec3(0, 0, 0); case 2: return vec3(0, 0, 0); case 3: return vec3(0, 0, 0); case 4: return vec3(0, 0, 0); case 5: return vec3(0, 0, 0); case 6: return vec3(0, 0, 0); case 7: return vec3(0, 0, 0); case 8: return vec3(0, 0, 0); case 9: return vec3(0, 0, 0); case 10: return vec3(0, 0, 0); case 11: return vec3(0, 0, 0); case 12: return vec3(0, 0, 0); case 13: return vec3(0, 0, 0); case 14: return vec3(0, 0, 0); case 15: return vec3(0, 0, 0); default: return vec3(0.0); } }const float PI = 3.14159265;vec2 rotate(vec2 coord, float angle) { float s = sin(angle); float c = cos(angle); return vec2( coord.x * c - coord.y * s, coord.x * s + coord.y * c ); }out vec4 fragColor;vec3 getColor(vec2 uv) {return vec3(0, 0, 0); }void main() {vec2 uv = vTextureCoord; vec2 pos = vec2(0.5, 0.5) + mix(vec2(0), (uMousePos-0.5), 0.0000); uv -= pos; uv /= (0.5000*2.); uv = rotate(uv, (0.0000 - 0.5) * 2. * PI); vec4 color = vec4(getColor(uv), 1.); fragColor = color; }"
+      ],
+      "compiledVertexShaders": [
+        "#version 300 es\nprecision mediump float;in vec3 aVertexPosition; in vec2 aTextureCoord;uniform mat4 uMVMatrix; uniform mat4 uPMatrix;out vec2 vTextureCoord; out vec3 vVertexPosition;void main() { gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0); vTextureCoord = aTextureCoord; }"
+      ],
+      "data": {
+        "downSample": 0.5,
+        "depth": false,
+        "uniforms": {},
+        "isBackground": true
+      },
+      "id": "effect"
+    },
+    {
+      "breakpoints": [],
+      "visible": true,
+      "locked": false,
+      "aspectRatio": 2.0273224043715845,
+      "layerName": "",
+      "userDownsample": 1,
+      "isElement": true,
+      "opacity": 0.93,
+      "effects": [],
+      "displace": 0,
+      "trackMouse": 0,
+      "anchorPoint": "center",
+      "mouseMomentum": 0,
+      "blendMode": "NORMAL",
+      "bgDisplace": 0,
+      "mask": 0,
+      "maskBackground": { "type": "Vec3", "_x": 0, "_y": 0, "_z": 0 },
+      "maskAlpha": 0,
+      "maskDepth": 0,
+      "dispersion": 0,
+      "axisTilt": 0,
+      "states": { "appear": [], "scroll": [], "hover": [] },
+      "layerType": "text",
+      "justCreated": false,
+      "isSafari": false,
+      "width": 0.725,
+      "widthMode": "relative",
+      "height": 380.3583573421255,
+      "heightMode": "fixed",
+      "left": 0.5002002268738462,
+      "leftMode": "relative",
+      "top": 0.5003203629981541,
+      "topMode": "relative",
+      "rotation": 0,
+      "trackAxes": "xy",
+      "fontSize": 0.26269437248127975,
+      "lineHeight": 1.0054945054945055,
+      "letterSpacing": -0.031722542263166245,
+      "fontFamily": "Outfit",
+      "fontStyle": "regular",
+      "fontWeight": "400",
+      "textAlign": "center",
+      "textContent": "Glow",
+      "fill": ["#DDD3FF"],
+      "gradientAngle": 0,
+      "gradientType": "linear",
+      "fontSizeMode": "relative",
+      "noTextAsHtml": false,
+      "fontCSS": {
+        "family": "Outfit",
+        "src": "https://assets.unicorn.studio/fonts/google_fonts/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.ttf"
+      },
+      "compiledFragmentShaders": [
+        "#version 300 es\nprecision highp float; in vec2 vTextureCoord; in vec3 vVertexPosition;uniform vec2 uMousePos; uniform sampler2D uBgTexture; uniform sampler2D uTexture; uniform int uSampleBg;const float STEPS = 24.0; const float PI = 3.1415926;out vec4 fragColor;vec4 getNormalOutput(vec4 color, vec4 background) { color = mix(background, color + background * (1.0 - color.a), 0.9300); return color; }vec4 getOutputByMode(vec4 color, vec4 background) { return getNormalOutput(color, background); }void main() { vec2 uv = vTextureCoord; vec2 pos = mix(vec2(0), (uMousePos - 0.5), 0.0000);uv -= pos;vec4 background = vec4(0); if(uSampleBg == 1) { background = texture(uBgTexture, vTextureCoord); } vec4 color = texture(uTexture, uv);vec4 col = getOutputByMode(color, background);fragColor = col; }"
+      ],
+      "compiledVertexShaders": [
+        "#version 300 es\nprecision highp float;in vec3 aVertexPosition; in vec2 aTextureCoord;uniform mat4 uMVMatrix; uniform mat4 uPMatrix; uniform mat4 uTextureMatrix; uniform vec2 uMousePos;out vec2 vTextureCoord; out vec3 vVertexPosition;void main() { float angleX = uMousePos.y * 0.5 - 0.25; float angleY = (1.-uMousePos.x) * 0.5 - 0.25;mat4 rotateX = mat4(1.0, 0.0, 0.0, 0.0, 0.0, cos(angleX), -sin(angleX), 0.0, 0.0, sin(angleX), cos(angleX), 0.0, 0.0, 0.0, 0.0, 1.0); mat4 rotateY = mat4(cos(angleY), 0.0, sin(angleY), 0.0, 0.0, 1.0, 0.0, 0.0, -sin(angleY), 0.0, cos(angleY), 0.0, 0.0, 0.0, 0.0, 1.0);mat4 rotationMatrix = rotateX * rotateY; gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0); vVertexPosition = (rotationMatrix * vec4(aVertexPosition, 1.0)).xyz; vTextureCoord = (uTextureMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy; }"
+      ],
+      "data": { "uniforms": {} },
+      "id": "text",
+      "windowWidth": 1440
+    },
+    {
+      "breakpoints": [],
+      "visible": true,
+      "aspectRatio": 1,
+      "userDownsample": 1,
+      "layerType": "effect",
+      "type": "fog",
+      "usesPingPong": false,
+      "speed": 0.5,
+      "trackMouse": 0,
+      "trackAxes": "xy",
+      "mouseMomentum": 0,
+      "texture": false,
+      "animating": true,
+      "isMask": 0,
+      "compiledFragmentShaders": [
+        "#version 300 es\nprecision highp float; precision highp int;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture; uniform float uTime; uniform vec2 uMousePos; uniform vec2 uResolution; float ease (int easingFunc, float t) { return t; } float getExponentialWeight(int index) { switch(index) { case 0: return 1.0000000000; case 1: return 0.7165313106; case 2: return 0.5134171190; case 3: return 0.3678794412; case 4: return 0.2636050919; case 5: return 0.1888756057; case 6: return 0.1353352832; case 7: return 0.0969670595; case 8: return 0.0694877157; default: return 0.0; } }out vec4 fragColor;const int kernelSize = 36; mat2 rot(float a) { return mat2(cos(a),-sin(a),sin(a),cos(a)); }const float PHI = 1.618033988; const float PI = 3.14159265359;float dot_noise(vec3 p) { const mat3 GOLD = mat3( -0.571464913, +0.814921382, +0.096597072, -0.278044873, -0.303026659, +0.911518454, +0.772087367, +0.494042493, +0.399753815); return dot(cos(GOLD * p), sin(PHI * p * GOLD)); }float cheap_fbm(vec3 p) { mat2 rota = mat2(0.6, -0.8, 0.8, 0.6); float nos = 0.; float amp = 1. + 0.8100 * 10.; float xp = sqrt(2.); float halfxp = xp * 0.5; for(int i = 0; i < 9; i++) { float theta = uTime * 0.05 + float(i); p.xy *= xp; p.xy += sin(rota * p.xy * xp + theta) * 0.2; float nz = dot_noise(vec3(p.xy * rota, p.z + theta)); nos += nz * amp * rota[0][0]; amp *= halfxp; rota *= mat2(0.6, -0.8, 0.8, 0.6); } nos *= 1./float(9); float density = -3. + 0.5200 * 6.; return smoothstep(-3., 3., nos + density); }float fnoise(vec2 uv) { float aspectRatio = uResolution.x/uResolution.y; vec2 aspect = vec2(aspectRatio, 1); float multiplier = 10.0 * (0.9700 / ((aspectRatio + 1.) / 2.)); vec2 st = ((uv * aspect - vec2(0.315450643776824, 0.4605150214592275) * aspect)) * multiplier * rot((0.2484 - 0.125) * 2. * PI);vec2 mPos = vec2(0.315450643776824, 0.4605150214592275) + mix(vec2(0), (uMousePos-0.5), 0.0000); vec2 pos = mix(vec2(0.315450643776824, 0.4605150214592275), mPos, floor(1.0000)); float dist = ease(0, max(0.,1.-distance(uv * aspect, mPos * aspect) * 4. * (1. - 1.0000)));if (0 == 1) { dist = max(0., (0.5 - dist)); } float time = uTime * 0.05; vec2 drift = vec2(time * 0.2) * 2.0 * 0.6700; float fbm = cheap_fbm(vec3(st - drift, time)) * dist; fbm = fbm / (1. + fbm); return fbm; }vec4 ExponentialBlur(sampler2D tex, vec2 uv, vec2 direction) { vec4 color = vec4(0.0); float total_weight = 0.0;float fogNoise = fnoise(uv); float radius = 8.0 * fogNoise * max(0.4200, 0.1); radius = mix(0.01, 0.03, radius);vec2 dir = normalize(direction) / vec2(uResolution.x/uResolution.y, 1);vec4 center = texture(tex, uv); float center_weight = getExponentialWeight(0); color += center * center_weight; total_weight += center_weight;for (int i = 1; i <= 8; i++) { float weight = getExponentialWeight(i); float offset = radius * float(i) / 8.0; vec4 sample1 = texture(tex, uv + offset * dir); vec4 sample2 = texture(tex, uv - offset * dir); color += (sample1 + sample2) * weight; total_weight += 2.0 * weight; } float scatter = radius * 2.; color += ( texture(tex, uv + scatter * dir) + texture(tex, uv - scatter * dir) ) * 0.0694877157;return color / total_weight; }vec4 blur(vec2 uv, vec2 direction) { return ExponentialBlur(uTexture, uv, direction); }vec4 getColor(vec2 uv) { return blur(uv, vec2(1, 0)); }void main() { vec2 uv = vTextureCoord; vec4 color = getColor(uv); fragColor = color;}",
+        "#version 300 es\nprecision highp float; precision highp int;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture; uniform float uTime; uniform vec2 uMousePos; uniform vec2 uResolution; float ease (int easingFunc, float t) { return t; } float getExponentialWeight(int index) { switch(index) { case 0: return 1.0000000000; case 1: return 0.7165313106; case 2: return 0.5134171190; case 3: return 0.3678794412; case 4: return 0.2636050919; case 5: return 0.1888756057; case 6: return 0.1353352832; case 7: return 0.0969670595; case 8: return 0.0694877157; default: return 0.0; } }out vec4 fragColor;const int kernelSize = 36; mat2 rot(float a) { return mat2(cos(a),-sin(a),sin(a),cos(a)); }const float PHI = 1.618033988; const float PI = 3.14159265359;float dot_noise(vec3 p) { const mat3 GOLD = mat3( -0.571464913, +0.814921382, +0.096597072, -0.278044873, -0.303026659, +0.911518454, +0.772087367, +0.494042493, +0.399753815); return dot(cos(GOLD * p), sin(PHI * p * GOLD)); }float cheap_fbm(vec3 p) { mat2 rota = mat2(0.6, -0.8, 0.8, 0.6); float nos = 0.; float amp = 1. + 0.8100 * 10.; float xp = sqrt(2.); float halfxp = xp * 0.5; for(int i = 0; i < 9; i++) { float theta = uTime * 0.05 + float(i); p.xy *= xp; p.xy += sin(rota * p.xy * xp + theta) * 0.2; float nz = dot_noise(vec3(p.xy * rota, p.z + theta)); nos += nz * amp * rota[0][0]; amp *= halfxp; rota *= mat2(0.6, -0.8, 0.8, 0.6); } nos *= 1./float(9); float density = -3. + 0.5200 * 6.; return smoothstep(-3., 3., nos + density); }float fnoise(vec2 uv) { float aspectRatio = uResolution.x/uResolution.y; vec2 aspect = vec2(aspectRatio, 1); float multiplier = 10.0 * (0.9700 / ((aspectRatio + 1.) / 2.)); vec2 st = ((uv * aspect - vec2(0.315450643776824, 0.4605150214592275) * aspect)) * multiplier * rot((0.2484 - 0.125) * 2. * PI);vec2 mPos = vec2(0.315450643776824, 0.4605150214592275) + mix(vec2(0), (uMousePos-0.5), 0.0000); vec2 pos = mix(vec2(0.315450643776824, 0.4605150214592275), mPos, floor(1.0000)); float dist = ease(0, max(0.,1.-distance(uv * aspect, mPos * aspect) * 4. * (1. - 1.0000)));if (0 == 1) { dist = max(0., (0.5 - dist)); } float time = uTime * 0.05; vec2 drift = vec2(time * 0.2) * 2.0 * 0.6700; float fbm = cheap_fbm(vec3(st - drift, time)) * dist; fbm = fbm / (1. + fbm); return fbm; }vec4 ExponentialBlur(sampler2D tex, vec2 uv, vec2 direction) { vec4 color = vec4(0.0); float total_weight = 0.0;float fogNoise = fnoise(uv); float radius = 8.0 * fogNoise * max(0.4200, 0.1); radius = mix(0.01, 0.03, radius);vec2 dir = normalize(direction) / vec2(uResolution.x/uResolution.y, 1);vec4 center = texture(tex, uv); float center_weight = getExponentialWeight(0); color += center * center_weight; total_weight += center_weight;for (int i = 1; i <= 8; i++) { float weight = getExponentialWeight(i); float offset = radius * float(i) / 8.0; vec4 sample1 = texture(tex, uv + offset * dir); vec4 sample2 = texture(tex, uv - offset * dir); color += (sample1 + sample2) * weight; total_weight += 2.0 * weight; } float scatter = radius * 2.; color += ( texture(tex, uv + scatter * dir) + texture(tex, uv - scatter * dir) ) * 0.0694877157;return color / total_weight; }vec4 blur(vec2 uv, vec2 direction) { return ExponentialBlur(uTexture, uv, direction); }vec4 getColor(vec2 uv) { return blur(uv, vec2(0, 1)); }void main() { vec2 uv = vTextureCoord; vec4 color = getColor(uv); fragColor = color;}",
+        "#version 300 es\nprecision highp float; precision highp int;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture; uniform float uTime; uniform vec2 uMousePos; uniform vec2 uResolution; float ease (int easingFunc, float t) { return t; } float getExponentialWeight(int index) { switch(index) { case 0: return 1.0000000000; case 1: return 0.7165313106; case 2: return 0.5134171190; case 3: return 0.3678794412; case 4: return 0.2636050919; case 5: return 0.1888756057; case 6: return 0.1353352832; case 7: return 0.0969670595; case 8: return 0.0694877157; default: return 0.0; } }out vec4 fragColor;const int kernelSize = 36; mat2 rot(float a) { return mat2(cos(a),-sin(a),sin(a),cos(a)); }const float PHI = 1.618033988; const float PI = 3.14159265359;float dot_noise(vec3 p) { const mat3 GOLD = mat3( -0.571464913, +0.814921382, +0.096597072, -0.278044873, -0.303026659, +0.911518454, +0.772087367, +0.494042493, +0.399753815); return dot(cos(GOLD * p), sin(PHI * p * GOLD)); }float cheap_fbm(vec3 p) { mat2 rota = mat2(0.6, -0.8, 0.8, 0.6); float nos = 0.; float amp = 1. + 0.8100 * 10.; float xp = sqrt(2.); float halfxp = xp * 0.5; for(int i = 0; i < 9; i++) { float theta = uTime * 0.05 + float(i); p.xy *= xp; p.xy += sin(rota * p.xy * xp + theta) * 0.2; float nz = dot_noise(vec3(p.xy * rota, p.z + theta)); nos += nz * amp * rota[0][0]; amp *= halfxp; rota *= mat2(0.6, -0.8, 0.8, 0.6); } nos *= 1./float(9); float density = -3. + 0.5200 * 6.; return smoothstep(-3., 3., nos + density); }float fnoise(vec2 uv) { float aspectRatio = uResolution.x/uResolution.y; vec2 aspect = vec2(aspectRatio, 1); float multiplier = 10.0 * (0.9700 / ((aspectRatio + 1.) / 2.)); vec2 st = ((uv * aspect - vec2(0.315450643776824, 0.4605150214592275) * aspect)) * multiplier * rot((0.2484 - 0.125) * 2. * PI);vec2 mPos = vec2(0.315450643776824, 0.4605150214592275) + mix(vec2(0), (uMousePos-0.5), 0.0000); vec2 pos = mix(vec2(0.315450643776824, 0.4605150214592275), mPos, floor(1.0000)); float dist = ease(0, max(0.,1.-distance(uv * aspect, mPos * aspect) * 4. * (1. - 1.0000)));if (0 == 1) { dist = max(0., (0.5 - dist)); } float time = uTime * 0.05; vec2 drift = vec2(time * 0.2) * 2.0 * 0.6700; float fbm = cheap_fbm(vec3(st - drift, time)) * dist; fbm = fbm / (1. + fbm); return fbm; }vec4 ExponentialBlur(sampler2D tex, vec2 uv, vec2 direction) { vec4 color = vec4(0.0); float total_weight = 0.0;float fogNoise = fnoise(uv); float radius = 8.0 * fogNoise * max(0.4200, 0.1); radius = mix(0.01, 0.03, radius);vec2 dir = normalize(direction) / vec2(uResolution.x/uResolution.y, 1);vec4 center = texture(tex, uv); float center_weight = getExponentialWeight(0); color += center * center_weight; total_weight += center_weight;for (int i = 1; i <= 8; i++) { float weight = getExponentialWeight(i); float offset = radius * float(i) / 8.0; vec4 sample1 = texture(tex, uv + offset * dir); vec4 sample2 = texture(tex, uv - offset * dir); color += (sample1 + sample2) * weight; total_weight += 2.0 * weight; } float scatter = radius * 2.; color += ( texture(tex, uv + scatter * dir) + texture(tex, uv - scatter * dir) ) * 0.0694877157;return color / total_weight; }vec4 blur(vec2 uv, vec2 direction) { return ExponentialBlur(uTexture, uv, direction); }vec4 getColor(vec2 uv) { return blur(uv, vec2(1, 1)); }void main() { vec2 uv = vTextureCoord; vec4 color = getColor(uv); fragColor = color;}",
+        "#version 300 es\nprecision highp float; precision highp int;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture; uniform float uTime; uniform vec2 uMousePos; uniform vec2 uResolution; float ease (int easingFunc, float t) { return t; } float getExponentialWeight(int index) { switch(index) { case 0: return 1.0000000000; case 1: return 0.7165313106; case 2: return 0.5134171190; case 3: return 0.3678794412; case 4: return 0.2636050919; case 5: return 0.1888756057; case 6: return 0.1353352832; case 7: return 0.0969670595; case 8: return 0.0694877157; default: return 0.0; } }out vec4 fragColor;const int kernelSize = 36; mat2 rot(float a) { return mat2(cos(a),-sin(a),sin(a),cos(a)); }const float PHI = 1.618033988; const float PI = 3.14159265359;float dot_noise(vec3 p) { const mat3 GOLD = mat3( -0.571464913, +0.814921382, +0.096597072, -0.278044873, -0.303026659, +0.911518454, +0.772087367, +0.494042493, +0.399753815); return dot(cos(GOLD * p), sin(PHI * p * GOLD)); }float cheap_fbm(vec3 p) { mat2 rota = mat2(0.6, -0.8, 0.8, 0.6); float nos = 0.; float amp = 1. + 0.8100 * 10.; float xp = sqrt(2.); float halfxp = xp * 0.5; for(int i = 0; i < 9; i++) { float theta = uTime * 0.05 + float(i); p.xy *= xp; p.xy += sin(rota * p.xy * xp + theta) * 0.2; float nz = dot_noise(vec3(p.xy * rota, p.z + theta)); nos += nz * amp * rota[0][0]; amp *= halfxp; rota *= mat2(0.6, -0.8, 0.8, 0.6); } nos *= 1./float(9); float density = -3. + 0.5200 * 6.; return smoothstep(-3., 3., nos + density); }float fnoise(vec2 uv) { float aspectRatio = uResolution.x/uResolution.y; vec2 aspect = vec2(aspectRatio, 1); float multiplier = 10.0 * (0.9700 / ((aspectRatio + 1.) / 2.)); vec2 st = ((uv * aspect - vec2(0.315450643776824, 0.4605150214592275) * aspect)) * multiplier * rot((0.2484 - 0.125) * 2. * PI);vec2 mPos = vec2(0.315450643776824, 0.4605150214592275) + mix(vec2(0), (uMousePos-0.5), 0.0000); vec2 pos = mix(vec2(0.315450643776824, 0.4605150214592275), mPos, floor(1.0000)); float dist = ease(0, max(0.,1.-distance(uv * aspect, mPos * aspect) * 4. * (1. - 1.0000)));if (0 == 1) { dist = max(0., (0.5 - dist)); } float time = uTime * 0.05; vec2 drift = vec2(time * 0.2) * 2.0 * 0.6700; float fbm = cheap_fbm(vec3(st - drift, time)) * dist; fbm = fbm / (1. + fbm); return fbm; }vec4 ExponentialBlur(sampler2D tex, vec2 uv, vec2 direction) { vec4 color = vec4(0.0); float total_weight = 0.0;float fogNoise = fnoise(uv); float radius = 8.0 * fogNoise * max(0.4200, 0.1); radius = mix(0.01, 0.03, radius);vec2 dir = normalize(direction) / vec2(uResolution.x/uResolution.y, 1);vec4 center = texture(tex, uv); float center_weight = getExponentialWeight(0); color += center * center_weight; total_weight += center_weight;for (int i = 1; i <= 8; i++) { float weight = getExponentialWeight(i); float offset = radius * float(i) / 8.0; vec4 sample1 = texture(tex, uv + offset * dir); vec4 sample2 = texture(tex, uv - offset * dir); color += (sample1 + sample2) * weight; total_weight += 2.0 * weight; } float scatter = radius * 2.; color += ( texture(tex, uv + scatter * dir) + texture(tex, uv - scatter * dir) ) * 0.0694877157;return color / total_weight; }vec4 blur(vec2 uv, vec2 direction) { return ExponentialBlur(uTexture, uv, direction); }vec4 getColor(vec2 uv) { return blur(uv, vec2(1, -1)); }void main() { vec2 uv = vTextureCoord; vec4 color = getColor(uv); fragColor = color;}",
+        "#version 300 es\nprecision highp float; precision highp int;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture; uniform sampler2D uBgTexture; uniform float uTime; uniform vec2 uMousePos; uniform vec2 uResolution; float ease (int easingFunc, float t) { return t; } uvec2 pcg2d(uvec2 v) { v = v * 1664525u + 1013904223u; v.x += v.y * v.y * 1664525u + 1013904223u; v.y += v.x * v.x * 1664525u + 1013904223u; v ^= v >> 16; v.x += v.y * v.y * 1664525u + 1013904223u; v.y += v.x * v.x * 1664525u + 1013904223u; return v; }float randFibo(vec2 p) { uvec2 v = floatBitsToUint(p); v = pcg2d(v); uint r = v.x ^ v.y; return float(r) / float(0xffffffffu); }vec3 blend (int blendMode, vec3 src, vec3 dst) { return src + dst; }out vec4 fragColor;const int kernelSize = 36; mat2 rot(float a) { return mat2(cos(a),-sin(a),sin(a),cos(a)); }vec3 Tonemap_ACES(vec3 x) { const float a = 2.51; const float b = 0.03; const float c = 2.43; const float d = 0.59; const float e = 0.14; return (x * (a * x + b)) / (x * (c * x + d) + e); }vec3 chromatic_aberration(vec3 color, vec2 uv, float amount) { vec2 offset = normalize(vTextureCoord - 0.5) * amount / vec2(uResolution.x/uResolution.y, 1); vec4 left = texture(uTexture, uv - offset); vec4 right = texture(uTexture, uv + offset);color.r = left.r; color.b = right.b;return color; }const float PHI = 1.618033988; const float PI = 3.14159265359;float dot_noise(vec3 p) { const mat3 GOLD = mat3( -0.571464913, +0.814921382, +0.096597072, -0.278044873, -0.303026659, +0.911518454, +0.772087367, +0.494042493, +0.399753815); return dot(cos(GOLD * p), sin(PHI * p * GOLD)); }float cheap_fbm(vec3 p) { mat2 rota = mat2(0.6, -0.8, 0.8, 0.6); float nos = 0.; float amp = 1. + 0.8100 * 10.; float xp = sqrt(2.); float halfxp = xp * 0.5; for(int i = 0; i < 9; i++) { float theta = uTime * 0.05 + float(i); p.xy *= xp; p.xy += sin(rota * p.xy * xp + theta) * 0.2; float nz = dot_noise(vec3(p.xy * rota, p.z + theta)); nos += nz * amp * rota[0][0]; amp *= halfxp; rota *= mat2(0.6, -0.8, 0.8, 0.6); } nos *= 1./float(9); float density = -3. + 0.5200 * 6.; return smoothstep(-3., 3., nos + density); }float fnoise(vec2 uv) { float aspectRatio = uResolution.x/uResolution.y; vec2 aspect = vec2(aspectRatio, 1); float multiplier = 10.0 * (0.9700 / ((aspectRatio + 1.) / 2.)); vec2 st = ((uv * aspect - vec2(0.315450643776824, 0.4605150214592275) * aspect)) * multiplier * rot((0.2484 - 0.125) * 2. * PI);vec2 mPos = vec2(0.315450643776824, 0.4605150214592275) + mix(vec2(0), (uMousePos-0.5), 0.0000); vec2 pos = mix(vec2(0.315450643776824, 0.4605150214592275), mPos, floor(1.0000)); float dist = ease(0, max(0.,1.-distance(uv * aspect, mPos * aspect) * 4. * (1. - 1.0000)));if (0 == 1) { dist = max(0., (0.5 - dist)); } float time = uTime * 0.05; vec2 drift = vec2(time * 0.2) * 2.0 * 0.6700; float fbm = cheap_fbm(vec3(st - drift, time)) * dist; fbm = fbm / (1. + fbm); return fbm; }vec4 fogComposite(vec2 uv) { vec4 bg = texture(uBgTexture, uv); vec4 blur = texture(uTexture, uv); float aspectRatio = uResolution.x/uResolution.y; float fogNoise = fnoise(uv); float fogMask = clamp(fogNoise * 2., 0., 1.);vec3 grain = vec3(randFibo(uv + fogNoise));blur.rgb = chromatic_aberration(blur.rgb, uv, fogMask * 0.01 * 0.4200 * (0.2900 * 2.5)); blur.rgb = Tonemap_ACES(blur.rgb * (1.2700 + 0.5)) + grain * 0.05; vec4 foggedBlur = vec4(blur.rgb * vec3(0.6470588235294118, 0.47843137254901963, 1), blur.a); foggedBlur.rgb += (0.0000 * 0.25 * fogMask * vec3(0.6470588235294118, 0.47843137254901963, 1)); foggedBlur.rgb = blend(1, bg.rgb, foggedBlur.rgb * fogMask); return foggedBlur; }vec4 getColor(vec2 uv) { return fogComposite(uv); }void main() { vec2 uv = vTextureCoord; vec4 color = getColor(uv); fragColor = color;}"
+      ],
+      "compiledVertexShaders": [
+        "#version 300 es\nprecision mediump float;in vec3 aVertexPosition; in vec2 aTextureCoord;uniform mat4 uMVMatrix; uniform mat4 uPMatrix; uniform mat4 uTextureMatrix;out vec2 vTextureCoord; out vec3 vVertexPosition;void main() { gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0); vTextureCoord = (uTextureMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy; }"
+      ],
+      "data": {
+        "downSample": 0.25,
+        "depth": false,
+        "uniforms": {},
+        "isBackground": false,
+        "passes": [
+          { "prop": "pass", "value": 1, "downSample": 0.25 },
+          { "prop": "pass", "value": 2, "downSample": 0.25 },
+          { "prop": "pass", "value": 3, "downSample": 0.25 },
+          { "prop": "pass", "value": 4, "includeBg": true }
+        ]
+      },
+      "id": "effect1"
+    },
+    {
+      "breakpoints": [],
+      "visible": true,
+      "aspectRatio": 1,
+      "userDownsample": 1,
+      "layerType": "effect",
+      "type": "godrays",
+      "usesPingPong": false,
+      "trackMouse": 0.52,
+      "trackAxes": "xy",
+      "mouseMomentum": 1,
+      "texture": false,
+      "animating": false,
+      "isMask": 0,
+      "compiledFragmentShaders": [
+        "#version 300 es\nprecision highp float; precision highp int;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture;const float MAX_ITERATIONS = 64.; const float PI2 = 6.28318530718; const float EPSILON = 0.0001; const float stepFactor = 0.0098;vec4 getBrightAreas(vec2 uv) { vec4 color = texture(uTexture, uv); float lum = dot(color.rgb, vec3(0.299, 0.587, 0.114)); color = color * smoothstep(0.0000 - 0.1, 0.0000, lum); return color; }vec4 getColor(vec2 uv) { return getBrightAreas(uv); }out vec4 fragColor;void main() { vec2 uv = vTextureCoord; vec4 color = getColor(uv); if(0 == 2) { fragColor = color;} else { fragColor = color; } }",
+        "#version 300 es\nprecision highp float; precision highp int;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture;uniform vec2 uMousePos;uvec2 pcg2d(uvec2 v) { v = v * 1664525u + 1013904223u; v.x += v.y * v.y * 1664525u + 1013904223u; v.y += v.x * v.x * 1664525u + 1013904223u; v ^= v >> 16; v.x += v.y * v.y * 1664525u + 1013904223u; v.y += v.x * v.x * 1664525u + 1013904223u; return v; }float randFibo(vec2 p) { uvec2 v = floatBitsToUint(p); v = pcg2d(v); uint r = v.x ^ v.y; return float(r) / float(0xffffffffu); }const float MAX_ITERATIONS = 64.; const float PI2 = 6.28318530718; const float EPSILON = 0.0001; const float stepFactor = 0.0098;vec4 godRays(vec2 st, float decay) { vec3 color = vec3(0); float offset = (0.25 + min(1., 0.3400)) * stepFactor; vec2 pos = vec2(0.5, 0.5) - mix(vec2(0), (vec2(1. - uMousePos.x, 1. - uMousePos.y) - 0.5), 0.5200); float weight = 1.0; float bnoz = randFibo(st) * 0.3400; float distanceInfo = 0.0; vec2 marchPos = st;for (float i = 0.0; i < MAX_ITERATIONS; i += 4.0) { for (float j = 0.0; j < 4.0; j++) { float bno = randFibo(st + vec2(i/MAX_ITERATIONS + j/4.0)) * 0.3400; vec2 offbno = vec2(cos(bno) - 0.5, sin(bno) - 0.5); float x = min(0.999, (i + j) * offset) + bnoz * 0.02; float y = min(0.999, (i + j)); marchPos = st * (1.0 - x) + vec2(x * 0.5) + (pos - 0.5) * x + offbno * 0.02 * 6.5100 * x; color += texture(uTexture, marchPos).rgb * weight; distanceInfo += y * weight; weight *= decay; if(weight < 0.01) break; } } return vec4(color / MAX_ITERATIONS, distance(st, marchPos)); }vec4 getGodRays(vec2 uv) { if(1.0000 == 0.) { return vec4(0); } vec4 rays = godRays(uv, 0.972); rays.rgb *= vec3(0.6470588235294118, 0.47843137254901963, 1); vec4 color; color.rgb = rays.rgb; color.a = rays.a; return color; }vec4 getColor(vec2 uv) { return getGodRays(uv); }out vec4 fragColor;void main() { vec2 uv = vTextureCoord; vec4 color = getColor(uv); if(1 == 2) { fragColor = color;} else { fragColor = color; } }",
+        "#version 300 es\nprecision highp float; precision highp int;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture; uniform sampler2D uBgTexture; uniform sampler2D uBlueNoise;uniform vec2 uResolution;const float MAX_ITERATIONS = 64.; const float PI2 = 6.28318530718; const float EPSILON = 0.0001; const float stepFactor = 0.0098;float luma(vec4 color) { return dot(color.rgb, vec3(0.299, 0.587, 0.114)); }float getBlueNoiseOffset(vec2 st) { ivec2 texSize = ivec2(512, 512); vec4 blueNoise = texelFetch(uBlueNoise, ivec2(fract(st * (uResolution)/vec2(texSize) * vec2(texSize.x/texSize.y, 1.0)) * vec2(texSize)) % texSize, 0); return mod((blueNoise.r - 0.5) * PI2, PI2); }vec4 composite(vec2 uv) { vec4 godrays = texture(uTexture, uv); float distanceInfo = godrays.a; float luminance = luma(godrays); float blueNoise = getBlueNoiseOffset(uv) - 0.5; vec2 circNoise = vec2(cos(blueNoise), sin(blueNoise)); float brightnessScale = (1. - (luminance + 0.25)); vec2 offset = circNoise * 0.05 * pow(brightnessScale, 3.) * distanceInfo * 2.; vec4 color = texture(uTexture, uv + offset); vec4 bg = texture(uBgTexture, uv);color.rgb = bg.rgb + (color.rgb * 2.9 * 1.0000 + blueNoise * 0.001); color.a = bg.a + color.r; return color; }vec4 getColor(vec2 uv) { return composite(uv); }out vec4 fragColor;void main() { vec2 uv = vTextureCoord; vec4 color = getColor(uv); if(2 == 2) { fragColor = color;} else { fragColor = color; } }"
+      ],
+      "compiledVertexShaders": [
+        "#version 300 es\nprecision mediump float;in vec3 aVertexPosition; in vec2 aTextureCoord;uniform mat4 uMVMatrix; uniform mat4 uPMatrix; uniform mat4 uTextureMatrix;out vec2 vTextureCoord; out vec3 vVertexPosition;void main() { gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0); vTextureCoord = (uTextureMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy; }"
+      ],
+      "data": {
+        "depth": false,
+        "uniforms": {},
+        "isBackground": false,
+        "passes": [
+          { "prop": "pass", "value": 1, "downSample": 0.5 },
+          { "prop": "pass", "value": 2, "includeBg": true }
+        ],
+        "texture": {
+          "src": "https://assets.unicorn.studio/media/blue_noise_med.png",
+          "sampler": "uBlueNoise"
+        }
+      },
+      "id": "effect2"
+    }
+  ],
+  "options": {
+    "name": "Glow",
+    "fps": 60,
+    "dpi": 1.5,
+    "scale": 1,
+    "includeLogo": false,
+    "isProduction": false,
+    "freePlan": false
+  },
+  "version": "1.4.35",
+  "id": "5OKwgytwXy2pUI5EjoiZ"
+}

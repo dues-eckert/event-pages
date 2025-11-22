@@ -1,22 +1,120 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/main.css';
+import Footer from '@components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <ClientRouter />
+  </head>
+  <body>
+    <slot />
+    <Footer />
+    <slot name="after-footer" />
+  </body>
 </html>
 
+<script>
+  async function loadAndInitUnicorn() {
+    // Dynamic import - only loads when called, enables code splitting
+    const UnicornStudioModule = await import('../scripts/unicornStudio.umd.js');
+
+    // Handle both default and named exports
+    if (!window.UnicornStudio) {
+      window.UnicornStudio = UnicornStudioModule.default || UnicornStudioModule;
+    }
+
+    // Initialize scenes if not already done
+    if (!window.UnicornStudio.isInitialized) {
+      await window.UnicornStudio.init();
+      window.UnicornStudio.isInitialized = true;
+    }
+  }
+
+  function initUnicornStudio() {
+    // Load after browser is idle for optimal performance
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => loadAndInitUnicorn().catch(console.error));
+    } else {
+      // Fallback for browsers without requestIdleCallback (Safari)
+      setTimeout(() => loadAndInitUnicorn().catch(console.error), 1);
+    }
+  }
+
+  // Initialize on initial page load and after view transitions
+  // This event fires both on first load and after every navigation
+  document.addEventListener('astro:page-load', () => {
+    if (window.UnicornStudio?.isInitialized) {
+      // Re-initialize scenes after navigation
+      window.UnicornStudio.init().catch(console.error);
+    } else {
+      // First load - load module and initialize
+      initUnicornStudio();
+    }
+  });
+</script>
+
+<script>
+  function showLogoEasterEgg() {
+    const logo = ` ██████████    ███   ███   █████████     ██████████          █████                          █████
+░░███░░░░███  ░░░   ░░░   ███░░░░░███   ░░███░░░░░█         ░░███                          ░░███
+ ░███   ░░███ █████ █████░███    ░░░     ░███  █ ░   ██████  ░███ █████  ██████  ████████  ███████
+ ░███    ░███░░███ ░░███ ░░█████████     ░██████    ███░░███ ░███░░███  ███░░███░░███░░███░░░███░
+ ░███    ░███ ░███  ░███  ░░░░░░░░███    ░███░░█   ░███ ░░░  ░██████░  ░███████  ░███ ░░░   ░███
+ ░███    ███  ░███  ░███  ███    ░███    ░███ ░   █░███  ███ ░███░░███ ░███░░░   ░███       ░███ ███
+ ██████████   ░░███████  ░░█████████     ██████████░░██████  ████ █████░░██████  █████      ░░█████
+░░░░░░░░░░     ░░░░░░░    ░░░░░░░░░     ░░░░░░░░░░  ░░░░░░  ░░░░ ░░░░░  ░░░░░░  ░░░░░        ░░░░░  `;
+
+    const gradientStyle = `
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: bold;
+      background: linear-gradient(
+        115deg,
+        #ea6a24 0.24%,
+        #d63c5d 25.12%,
+        #cd3593 50%,
+        #9a3885 74.88%,
+        #5b429a 99.76%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    `;
+
+    console.log(`%c${logo}`, gradientStyle);
+    console.log(
+      '%cWelcome to DÜS Eckert! 👋',
+      'font-size: 14px; color: #ea6a24; font-weight: bold;',
+    );
+  }
+
+  document.addEventListener('astro:page-load', showLogoEasterEgg);
+</script>
+
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html {
+    background: var(--color-black);
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-black);
+  }
 </style>

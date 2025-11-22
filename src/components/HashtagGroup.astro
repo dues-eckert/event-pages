@@ -1,0 +1,186 @@
+---
+/**
+ * Hashtag Group Component
+ * Displays hashtags and tags with copy-to-clipboard functionality
+ */
+interface Props {
+  hashtags: string[];
+  tags?: string[];
+}
+
+const { hashtags, tags = [] } = Astro.props;
+const allText = [...hashtags, ...tags].join(' ');
+---
+
+<div class="hashtag-wrapper">
+  <div class="hashtag-group" data-copy={allText}>
+    {hashtags.map((tag) => <span class="hashtag">{tag}</span>)}
+    {tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+  <button class="copy-btn" type="button">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"></rect>
+      <path
+        d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+        stroke="currentColor"
+        stroke-width="2"></path>
+    </svg>
+    <span>Hashtags kopieren</span>
+  </button>
+</div>
+
+<script>
+  function initHashtagCopy() {
+    const copyBtns = document.querySelectorAll('.copy-btn');
+
+    const showToast = (message: string) => {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      requestAnimationFrame(() => toast.classList.add('show'));
+      setTimeout(() => toast.classList.remove('show'), 2000);
+      setTimeout(() => toast.remove(), 2300);
+    };
+
+    copyBtns.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const wrapper = btn.closest('.hashtag-wrapper');
+        const group = wrapper?.querySelector('.hashtag-group');
+        const text = group?.getAttribute('data-copy') || '';
+
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast('Hashtags kopiert! 🎉');
+          btn.classList.add('copied');
+          setTimeout(() => btn.classList.remove('copied'), 1500);
+        } catch {
+          showToast('Bitte manuell kopieren');
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initHashtagCopy);
+</script>
+
+<style>
+  .hashtag-wrapper {
+    margin: 1.25rem 0 0;
+  }
+
+  .hashtag-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .hashtag {
+    display: inline-flex;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--color-white) 8%, transparent),
+      color-mix(in oklch, var(--color-white) 4%, transparent)
+    );
+    color: var(--text-primary);
+    border: 1px solid var(--border-bright);
+  }
+
+  .tag {
+    display: inline-flex;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: var(--gradient-vibrant-subtle);
+    color: var(--text-primary);
+    border: 1px solid color-mix(in oklch, var(--color-orange-600) 30%, transparent);
+    box-shadow: var(--shadow-glow-purple);
+  }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--color-white) 8%, transparent),
+      color-mix(in oklch, var(--color-white) 4%, transparent)
+    );
+    border: 1px solid var(--border-bright);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(12px);
+  }
+
+  .copy-btn:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklch, var(--color-white) 30%, transparent);
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--color-white) 12%, transparent),
+      color-mix(in oklch, var(--color-white) 6%, transparent)
+    );
+  }
+
+  .copy-btn:active {
+    transform: translateY(0);
+  }
+
+  .copy-btn.copied {
+    background: var(--gradient-vibrant-subtle);
+    border-color: color-mix(in oklch, var(--color-orange-600) 30%, transparent);
+    box-shadow:
+      0 0 20px color-mix(in oklch, var(--color-violet-400) 15%, transparent),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  :global(.toast) {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(20px);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1000;
+  }
+
+  :global(.toast.show) {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    .hashtag-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .copy-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
