@@ -267,18 +267,28 @@ const currentYear = new Date().getFullYear();
   }
 
   /* Responsive Design */
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .footer {
-      min-height: 32rem;
+      min-height: 36rem;
     }
 
     .footer-content {
-      padding: 3rem 1.5rem 1.5rem;
+      padding: 3.5rem 2rem 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer {
+      min-height: clamp(26rem, 60vh, 32rem);
+    }
+
+    .footer-content {
+      padding: 2.5rem 1.5rem 1.5rem;
       gap: 2rem;
     }
 
     .hero-logo {
-      padding: 1.5rem 0 0;
+      padding: 1.25rem 0 0;
     }
 
     .footer-main {
@@ -289,33 +299,29 @@ const currentYear = new Date().getFullYear();
       font-size: var(--text-body-regular);
     }
 
+    .cta-button {
+      inline-size: 100%;
+    }
+
     .footer-bottom {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1.5rem;
-      padding-top: 1.5rem;
+      gap: 1.25rem;
+      padding-block-start: 1.5rem;
     }
 
     .legal-links {
       justify-content: flex-start;
     }
-  }
 
-  @media (max-width: 640px) {
-    .footer {
-      min-height: 28rem;
+    .social-icon {
+      inline-size: 36px;
+      block-size: 36px;
     }
 
-    .footer-content {
-      padding: 2rem 1.25rem 1.25rem;
-    }
-
-    .cta-button {
-      width: 100%;
-    }
-
-    .hero-logo {
-      padding: 1rem 0 0;
+    .social-icon svg {
+      inline-size: 20px;
+      block-size: 20px;
     }
   }
 </style>

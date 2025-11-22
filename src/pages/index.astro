@@ -829,98 +829,194 @@ import Icon from '@components/Icon.astro';
   }
 
   /* ============================================
-     Responsive Design
+     Container Queries - Components respond to container width
      ============================================ */
 
+  .hero-badges {
+    container-type: inline-size;
+  }
+
+  .contest-cards {
+    container-type: inline-size;
+  }
+
+  .prize-podium {
+    container-type: inline-size;
+  }
+
+  /* ============================================
+     Responsive Design - 3 Breakpoints Max
+     ============================================ */
+
+  /* Tablet & Small Desktop (641px - 1024px) */
   @media (max-width: 1024px) {
     .prize-podium {
-      gap: 1rem;
+      gap: 1.5rem;
+    }
+
+    .prize-first {
+      min-block-size: 460px;
+    }
+
+    .prize-second,
+    .prize-third {
+      min-block-size: 380px;
     }
   }
 
-  @media (max-width: 768px) {
+  /* Mobile & Small Tablets (0 - 640px) */
+  @media (max-width: 640px) {
     .hero-inner {
-      padding-block: 3rem 7rem;
+      padding-block: clamp(2.5rem, 8vh, 3.5rem) clamp(6rem, 12vh, 7rem);
       padding-inline: 1.5rem;
     }
 
+    .hero-logo {
+      inline-size: 48px;
+      block-size: 48px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 15vw, 4rem);
+      margin-block: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: var(--text-body-regular);
+      margin-block-end: 1.5rem;
+    }
+
+    .hero-badges {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
     .waffle-bridge {
-      margin-block: -18rem -12rem;
+      margin-block: clamp(-14rem, -25vw, -16rem) clamp(-10rem, -18vw, -12rem);
       padding-inline: 1.5rem;
     }
 
     .waffle-card {
       aspect-ratio: 16 / 12;
+      inline-size: min(1200px, 95vw);
     }
 
     .container {
       padding-inline: 1.5rem;
     }
 
+    .section-header {
+      margin-block-end: clamp(2.5rem, 5vw, 3.5rem);
+
+      & h2 {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+      }
+    }
+
     .contest {
-      padding-block: 5rem;
+      padding-block: clamp(4rem, 10vw, 6rem);
     }
 
     .prize-podium {
       grid-template-columns: 1fr;
       max-inline-size: 500px;
+      gap: 1.5rem;
+    }
+
+    .prize {
+      padding: 1.75rem 1.5rem;
     }
 
     .prize-first {
       order: 1;
-      min-block-size: 420px;
-      padding: 2.5rem 1.5rem;
+      min-block-size: auto;
+      padding: 2.25rem 1.75rem;
 
       & h3 {
+        font-size: clamp(1.5rem, 5vw, 1.875rem);
+      }
+
+      & .prize-rank {
+        inline-size: 3.5rem;
+        block-size: 3.5rem;
         font-size: 1.75rem;
       }
 
       & .prize-value-wrapper .prize-value {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 8vw, 2.75rem);
       }
     }
 
     .prize-second {
       order: 2;
-      min-block-size: 360px;
-      padding: 2rem 1.5rem;
+      min-block-size: auto;
 
       & h3 {
-        font-size: 1.5rem;
+        font-size: clamp(1.35rem, 4.5vw, 1.625rem);
+      }
+
+      & .prize-rank {
+        inline-size: 3rem;
+        block-size: 3rem;
+        font-size: 1.35rem;
       }
 
       & .prize-value-wrapper .prize-value {
-        font-size: 2rem;
+        font-size: clamp(1.75rem, 6vw, 2.25rem);
       }
     }
 
     .prize-third {
       order: 3;
-      min-block-size: 320px;
-      padding: 1.75rem 1.5rem;
+      min-block-size: auto;
 
       & h3 {
-        font-size: 1.35rem;
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+      }
+
+      & .prize-rank {
+        inline-size: 2.75rem;
+        block-size: 2.75rem;
+        font-size: 1.125rem;
       }
 
       & .prize-value-wrapper .prize-value {
-        font-size: 1.75rem;
+        font-size: clamp(1.5rem, 5vw, 1.875rem);
       }
+    }
+
+    .legal-text {
+      font-size: 0.8125rem;
+      margin-block-start: 2.5rem;
+      padding-block-start: 1.5rem;
+    }
+
+    .terms-details {
+      margin-block-start: 2.5rem;
+    }
+
+    .terms-summary {
+      padding: 1rem 1.25rem;
+      font-size: var(--text-body-small);
     }
 
     .terms-content {
       padding: 1.5rem;
 
       & h2 {
-        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin-block-end: 1.5rem;
       }
-    }
-  }
 
-  @media (max-width: 480px) {
-    .hero-badges {
-      flex-direction: column;
-      gap: 0.75rem;
+      & h3 {
+        font-size: clamp(1.25rem, 5vw, 1.5rem);
+        margin-block: 2rem 0.875rem;
+      }
+
+      & p {
+        font-size: var(--text-body-small);
+      }
     }
   }
 </style>

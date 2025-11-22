@@ -31,6 +31,7 @@ const { number, title } = Astro.props;
     padding: 2rem;
     transition: all var(--transition-base);
     box-shadow: var(--shadow-card);
+    container-type: inline-size;
   }
 
   .contest-card:hover {
@@ -46,7 +47,7 @@ const { number, title } = Astro.props;
   }
 
   .card-header h3 {
-    font-size: 1.75rem;
+    font-size: clamp(1.375rem, 4cqi, 1.75rem);
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
@@ -55,11 +56,11 @@ const { number, title } = Astro.props;
 
   .card-number {
     flex-shrink: 0;
-    width: 3rem;
-    height: 3rem;
+    inline-size: clamp(2.5rem, 8cqi, 3rem);
+    block-size: clamp(2.5rem, 8cqi, 3rem);
     display: grid;
     place-items: center;
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 3cqi, 1.1rem);
     font-weight: 800;
     border-radius: 50%;
     background: var(--gradient-vibrant-subtle);
@@ -69,23 +70,22 @@ const { number, title } = Astro.props;
   }
 
   .card-content {
-    width: 100%;
+    inline-size: 100%;
   }
 
-  @media (max-width: 768px) {
+  /* Container query: Adjust spacing for narrow cards */
+  @container (max-width: 500px) {
     .contest-card {
       padding: 1.5rem;
-      gap: 1rem;
+      gap: 1.25rem;
     }
+  }
 
-    .card-number {
-      width: 2.5rem;
-      height: 2.5rem;
-      font-size: 0.95rem;
-    }
-
-    .card-header h3 {
-      font-size: 1.5rem;
+  /* Viewport query: Mobile devices */
+  @media (max-width: 640px) {
+    .contest-card {
+      padding: 1.5rem;
+      gap: 1.125rem;
     }
   }
 </style>
