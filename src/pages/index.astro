@@ -8,231 +8,242 @@ import Icon from '@components/Icon.astro';
 ---
 
 <Layout title="Waffeltag 2025 - Events bei DÜS Eckert">
-  {/* Hero Section */}
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <Logo height={64} class="hero-logo" />
-        <h1>Waffeltag 2025</h1>
-        <p class="hero-subtitle">
-          Ein Tag voller, leckerer Waffeln für all unsere Teilnehmenden. 🧇 <br />
-          Und ein Gewinnspiel mit 10 Preisen. Vielen Dank, dass ihr bei DÜS Eckert lernt.
+  <main>
+    {/* Hero Section */}
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <Logo height={64} class="hero-logo" />
+          <h1>Waffeltag 2025</h1>
+          <p class="hero-subtitle">
+            Ein Tag voller, leckerer Waffeln für all unsere Teilnehmenden. 🧇 <br />
+            Und ein Gewinnspiel mit 10 Preisen. Vielen Dank, dass ihr bei DÜS Eckert lernt.
+          </p>
+          <div class="hero-badges">
+            <Badge variant="gradient">@dues.eckert</Badge>
+            <Badge>#Waffeltag2025</Badge>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Waffle Bridge */}
+    <div class="waffle-bridge" aria-hidden="true">
+      <div class="waffle-card">
+        <div
+          class="us-scene"
+          data-us-project-src="/scenes/waffle-animation.json"
+          data-us-scale="1"
+          data-us-dpi="1"
+          data-us-lazyload="true"
+          data-us-production="true"
+          data-us-alttext="Frische Waffel mit Puderzucker"
+        >
+        </div>
+      </div>
+    </div>
+
+    {/* Contest Section */}
+    <section class="contest" id="gewinnspiel">
+      <div class="container">
+        <header class="section-header">
+          <h2>So funktioniert das Gewinnspiel</h2>
+          <p>Folge diesen drei Schritten, um teilzunehmen</p>
+        </header>
+        <ol class="contest-cards">
+          <li>
+            <ContestCard number="01" title="Hol dir deine Waffel">
+              <p>
+                Am Waffeltag gibt es kostenlose Waffeln für alle Teilnehmenden! Folge uns auf
+                Instagram, um über den genauen Termin und die Gewinnenden informiert zu werden.
+              </p>
+              <div class="card-action">
+                <a
+                  href="https://instagram.com/dues.eckert"
+                  class="social-link social-link-instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon name="instagram_logo" class="social-icon" aria-hidden="true" />
+                  dues.eckert
+                  <Icon name="external_link" class="external-icon" aria-hidden="true" />
+                </a>
+              </div>
+            </ContestCard>
+          </li>
+
+          <li>
+            <ContestCard number="02" title="Teile dein Foto auf Instagram">
+              <p>
+                Mach ein kreatives Foto mit deiner Waffel und poste es mit diesen Hashtags. <br />
+                <strong>Wichtig:</strong> Markiere @dues.eckert bitte im Bild, damit wir deinen Post
+                sehen können.
+              </p>
+              <HashtagGroup
+                hashtags={['#DUESEckert', '#Waffeltag2025', '#Deutschkurs']}
+                tags={['@dues.eckert']}
+              />
+            </ContestCard>
+          </li>
+
+          <li>
+            <ContestCard number="03" title="Gewinne tolle Preise">
+              <p>
+                Die Gewinnenden werden am <strong>06.01.2026</strong> ausgelost und per Direktnachricht
+                benachrichtigt. Mit etwas Glück gewinnst du <a href="#preise"
+                  >einen von 10 Preisen</a
+                >!
+              </p>
+            </ContestCard>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    {/* Prizes Section */}
+    <section class="prizes" id="preise">
+      <div class="container">
+        <header class="section-header">
+          <h2>Das kannst du gewinnen</h2>
+          <p>10 Gewinnende erhalten Preise im Gesamtwert von über 600 €</p>
+        </header>
+
+        <ul class="prize-podium">
+          <li class="prize prize-second">
+            <div class="prize-rank">2</div>
+            <h3>50 € Gutschein*</h3>
+            <p class="prize-desc">
+              Einlösbar für unsere Kurse, Prüfungen und alle Produkte, die wir verkaufen.
+            </p>
+            <div class="prize-value-wrapper">
+              <div class="prize-value-label">Im Wert von</div>
+              <div class="prize-value">50 €</div>
+            </div>
+          </li>
+
+          <li class="prize prize-first">
+            <div class="prize-rank">1</div>
+            <h3>Kostenloses Kursmodul*</h3>
+            <p class="prize-desc">
+              Ein komplettes Kursmodul (100 Unterrichtsstunden) deiner Wahl, entweder während deines
+              laufenden Kurses oder zusätzliche Prüfungsvorbereitung.
+            </p>
+            <div class="prize-value-wrapper">
+              <div class="prize-value-label">Im Wert von</div>
+              <div class="prize-value">425 €</div>
+            </div>
+          </li>
+
+          <li class="prize prize-third">
+            <div class="prize-rank">3–10</div>
+            <h3>8 × 20 € Gutscheine*</h3>
+            <p class="prize-desc">
+              Einlösbar für unsere Kurse, Prüfungen und alle Produkte, die wir verkaufen.
+            </p>
+            <div class="prize-value-wrapper">
+              <div class="prize-value-label">Im Wert von</div>
+              <div class="prize-value">20 €</div>
+            </div>
+          </li>
+        </ul>
+
+        <p class="legal-text">
+          * Alle Gewinne können nur von den Gewinnenden selbst oder deren Familienmitgliedern
+          genutzt werden. <br /><br />
+          Der Rechtsweg ist ausgeschlossen. Die Gewinnenden werden per Instagram-Direktnachricht benachrichtigt
+          und haben 14 Tage Zeit, sich zurückzumelden. <br />
         </p>
-        <div class="hero-badges">
-          <Badge variant="gradient">@dues.eckert</Badge>
-          <Badge>#Waffeltag2025</Badge>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  {/* Waffle Bridge */}
-  <div class="waffle-bridge" aria-hidden="true">
-    <div class="waffle-card">
-      <div
-        class="us-scene"
-        data-us-project-src="/scenes/waffle-animation.json"
-        data-us-scale="1"
-        data-us-dpi="1"
-        data-us-lazyload="true"
-        data-us-production="true"
-        data-us-alttext="Frische Waffel mit Puderzucker"
-      >
-      </div>
-    </div>
-  </div>
+        <details class="terms-details" id="teilnahmebedingungen">
+          <summary class="terms-summary"> Teilnahmebedingungen anzeigen </summary>
+          <div class="terms-content">
+            <h2>Teilnahmebedingungen</h2>
+            <h3>Veranstalter</h3>
+            <p>
+              DÜS Eckert Spracheninstitut GmbH<br />
+              Immermannstr. 65 C<br />
+              40210 Düsseldorf<br />
+              E-Mail: mail@dues-eckert.de
+            </p>
 
-  {/* Contest Section */}
-  <section class="contest" id="gewinnspiel">
-    <div class="container">
-      <div class="section-header">
-        <h2>So funktioniert das Gewinnspiel</h2>
-        <p>Folge diesen drei Schritten, um teilzunehmen</p>
-      </div>
-      <div class="contest-cards">
-        <ContestCard number="01" title="Hol dir deine Waffel">
-          <p>
-            Am Waffeltag gibt es kostenlose Waffeln für alle Teilnehmenden! Folge uns auf Instagram,
-            um über den genauen Termin und die Gewinnenden informiert zu werden.
-          </p>
-          <div class="card-action">
-            <a
-              href="https://instagram.com/dues.eckert"
-              class="social-link social-link-instagram"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon name="instagram_logo" class="social-icon" />
-              dues.eckert
-              <Icon name="external_link" class="external-icon" />
-            </a>
+            <h3>Teilnahmezeitraum</h3>
+            <p>
+              Das Gewinnspiel beginnt am 15.12.2025 und endet am 21.12.2025 um 23:59 Uhr. Die
+              Auslosung der Gewinnenden erfolgt am 06.01.2026.
+            </p>
+
+            <h3>Teilnahmeberechtigung</h3>
+            <p>
+              Teilnahmeberechtigt sind alle aktuell Teilnehmenden von DÜS Eckert ab 18 Jahren.
+              Mitarbeitende von DÜS Eckert und deren Angehörige sind von der Teilnahme
+              ausgeschlossen.
+            </p>
+
+            <h3>Teilnahme</h3>
+            <p>
+              Die Teilnahme erfolgt durch das Posten eines Fotos auf Instagram oder Facebook mit den
+              Hashtags <strong>#DUESEckert #Waffeltag2025 und #Deutschkurs</strong> sowie der Markierung
+              von <strong>@dues.eckert</strong> auf Instagram. Die Teilnahme ist kostenlos und nicht
+              an einen Kauf gebunden.
+            </p>
+
+            <h3>Gewinne</h3>
+            <p>
+              Zu gewinnen gibt es:<br />
+              • 1× Ein kostenloses Kursmodul im Wert von 425 €<br />
+              • 1× Gutschein über 50 € für Kurse, Prüfungen und Produkte im Kassensystem von DÜS Eckert<br
+              />
+              • 8× Gutschein über 20 € für Kurse, Prüfungen und alle Produkte im Kassensystem von DÜS
+              Eckert
+            </p>
+            <p>
+              Die Gewinne sind nicht übertragbar und können nicht in bar ausgezahlt werden. Eine
+              Barauszahlung oder ein Tausch der Gewinne ist ausgeschlossen.
+            </p>
+
+            <h3>Ermittlung und Benachrichtigung der Gewinnenden</h3>
+            <p>
+              Die Gewinnenden werden durch ein Losverfahren (Zufallsprinzip) am 6. Januar 2026
+              ermittelt. Die Benachrichtigung erfolgt per Direktnachricht auf Instagram innerhalb
+              von 7 Tagen nach der Auslosung. Meldet sich eine gewinnende Person nicht innerhalb von
+              14 Tagen nach der Benachrichtigung, verfällt der Gewinn und es wird nachträglich eine
+              neue Person gezogen.
+            </p>
+
+            <h3>Datenschutz</h3>
+            <p>
+              Die im Rahmen des Gewinnspiels erhobenen personenbezogenen Daten (z.B. Instagram-Name)
+              werden ausschließlich zur Durchführung des Gewinnspiels verwendet und nach Abschluss
+              des Gewinnspiels gelöscht. Eine Weitergabe an Dritte erfolgt nicht. Weitere
+              Informationen zum Datenschutz findest du in unserer <a
+                href="https://dues-eckert.com/de/datenschutz">Datenschutzerklärung</a
+              >.
+            </p>
+
+            <h3>Haftungsausschluss</h3>
+            <p>
+              DÜS Eckert haftet nicht für technische Störungen, die außerhalb des Einflussbereichs
+              liegen. DÜS Eckert behält sich das Recht vor, das Gewinnspiel jederzeit ohne
+              Vorankündigung zu ändern, zu unterbrechen oder zu beenden, falls dies aus rechtlichen
+              oder technischen Gründen erforderlich ist.
+            </p>
+
+            <h3>Sonstiges</h3>
+            <p>
+              Der Rechtsweg ist ausgeschlossen. Es gilt das Recht der Bundesrepublik Deutschland.
+              Sollten einzelne Bestimmungen dieser Teilnahmebedingungen unwirksam sein oder werden,
+              bleibt die Gültigkeit der übrigen Teilnahmebedingungen hiervon unberührt.
+            </p>
+
+            <p class="terms-note">
+              Dieses Gewinnspiel steht in keiner Verbindung zu Instagram oder Facebook und wird in
+              keiner Weise von diesen Plattformen gesponsert, unterstützt oder organisiert.
+            </p>
           </div>
-        </ContestCard>
-
-        <ContestCard number="02" title="Teile dein Foto auf Instagram">
-          <p>
-            Mach ein kreatives Foto mit deiner Waffel und poste es mit diesen Hashtags. <br />
-            <strong>Wichtig:</strong> Markiere @dues.eckert bitte im Bild, damit wir deinen Post sehen
-            können.
-          </p>
-          <HashtagGroup
-            hashtags={['#DUESEckert', '#Waffeltag2025', '#Deutschkurs']}
-            tags={['@dues.eckert']}
-          />
-        </ContestCard>
-
-        <ContestCard number="03" title="Gewinne tolle Preise">
-          <p>
-            Die Gewinnenden werden am <strong>06.01.2026</strong> ausgelost und per Direktnachricht benachrichtigt.
-            Mit etwas Glück gewinnst du <a href="#preise">einen von 10 Preisen</a>!
-          </p>
-        </ContestCard>
+        </details>
       </div>
-    </div>
-  </section>
-
-  {/* Prizes Section */}
-  <section class="prizes" id="preise">
-    <div class="container">
-      <header class="section-header">
-        <h2>Das kannst du gewinnen</h2>
-        <p>10 Gewinnende erhalten Preise im Gesamtwert von über 600 €</p>
-      </header>
-
-      <div class="prize-podium">
-        <div class="prize prize-second">
-          <div class="prize-rank">2</div>
-          <h3>50 € Gutschein*</h3>
-          <p class="prize-desc">
-            Einlösbar für unsere Kurse, Prüfungen und alle Produkte, die wir verkaufen.
-          </p>
-          <div class="prize-value-wrapper">
-            <div class="prize-value-label">Im Wert von</div>
-            <div class="prize-value">50 €</div>
-          </div>
-        </div>
-
-        <div class="prize prize-first">
-          <div class="prize-rank">1</div>
-          <h3>Kostenloses Kursmodul*</h3>
-          <p class="prize-desc">
-            Ein komplettes Kursmodul (100 Unterrichtsstunden) deiner Wahl, entweder während deines
-            laufenden Kurses oder zusätzliche Prüfungsvorbereitung.
-          </p>
-          <div class="prize-value-wrapper">
-            <div class="prize-value-label">Im Wert von</div>
-            <div class="prize-value">425 €</div>
-          </div>
-        </div>
-
-        <div class="prize prize-third">
-          <div class="prize-rank">3–10</div>
-          <h3>8 × 20 € Gutscheine*</h3>
-          <p class="prize-desc">
-            Einlösbar für unsere Kurse, Prüfungen und alle Produkte, die wir verkaufen.
-          </p>
-          <div class="prize-value-wrapper">
-            <div class="prize-value-label">Im Wert von</div>
-            <div class="prize-value">20 €</div>
-          </div>
-        </div>
-      </div>
-
-      <p class="legal-text">
-        Der Rechtsweg ist ausgeschlossen. Die Gewinnenden werden per Instagram-Direktnachricht
-        benachrichtigt und haben 14 Tage Zeit, sich zurückzumelden.
-      </p>
-      <p class="legal-text" style="margin-top: 1rem;">
-        * Alle Gewinne können nur von den Gewinnenden selbst oder deren Familienmitgliedern genutzt
-        werden.
-      </p>
-
-      <details class="terms-details" id="teilnahmebedingungen">
-        <summary class="terms-summary"> Teilnahmebedingungen anzeigen </summary>
-        <div class="terms-content">
-          <h2>Teilnahmebedingungen</h2>
-          <h3>DÜS Eckert</h3>
-          <p>
-            DÜS Eckert Sprachschule<br />
-            [Adresse einfügen]<br />
-            [PLZ Stadt einfügen]<br />
-            E-Mail: [E-Mail einfügen]
-          </p>
-
-          <h3>Teilnahmezeitraum</h3>
-          <p>
-            Das Gewinnspiel beginnt am [Startdatum einfügen] und endet am 30. März 2025 um 23:59
-            Uhr. Die Auslosung der Gewinnenden erfolgt am 6. Januar 2026.
-          </p>
-
-          <h3>Teilnahmeberechtigung</h3>
-          <p>
-            Teilnahmeberechtigt sind alle Teilnehmenden der DÜS Eckert Sprachschule ab 18 Jahren.
-            Mitarbeitende von DÜS Eckert und deren Angehörige sind von der Teilnahme ausgeschlossen.
-          </p>
-
-          <h3>Teilnahme</h3>
-          <p>
-            Die Teilnahme erfolgt durch das Posten eines Fotos auf Instagram oder Facebook mit dem
-            Hashtag <strong>#Waffeltag2025</strong> sowie der Markierung von <strong
-              >@dues.eckert</strong
-            > (Instagram) oder <strong>@dueseckert</strong> (Facebook). Die Teilnahme ist kostenlos und
-            nicht an einen Kauf gebunden.
-          </p>
-
-          <h3>Gewinne</h3>
-          <p>
-            Zu gewinnen gibt es:<br />
-            • 1× Ein kostenloses Kursmodul im Wert von 425 €<br />
-            • 1× Gutschein über 50 € für Kurse, Prüfungen und alle Angebote<br />
-            • 8× Gutschein über 20 € für Kurse, Prüfungen und alle Angebote
-          </p>
-          <p>
-            Die Gewinne sind nicht übertragbar und können nicht in bar ausgezahlt werden. Eine
-            Barauszahlung oder ein Tausch der Gewinne ist ausgeschlossen.
-          </p>
-
-          <h3>Ermittlung und Benachrichtigung der Gewinnenden</h3>
-          <p>
-            Die Gewinnenden werden durch ein Losverfahren (Zufallsprinzip) am 6. Januar 2026
-            ermittelt. Die Benachrichtigung erfolgt per Direktnachricht auf Instagram oder Facebook
-            innerhalb von 7 Tagen nach der Auslosung. Meldet sich eine gewinnende Person nicht
-            innerhalb von 14 Tagen nach der Benachrichtigung, verfällt der Gewinn und es wird
-            nachträglich eine neue Person gezogen.
-          </p>
-
-          <h3>Datenschutz</h3>
-          <p>
-            Die im Rahmen des Gewinnspiels erhobenen personenbezogenen Daten (z.B.
-            Instagram-/Facebook-Name) werden ausschließlich zur Durchführung des Gewinnspiels
-            verwendet und nach Abschluss des Gewinnspiels gelöscht. Eine Weitergabe an Dritte
-            erfolgt nicht. Weitere Informationen zum Datenschutz findest du in unserer
-            Datenschutzerklärung.
-          </p>
-
-          <h3>Haftungsausschluss</h3>
-          <p>
-            DÜS Eckert haftet nicht für technische Störungen, die außerhalb des Einflussbereichs
-            liegen. DÜS Eckert behält sich das Recht vor, das Gewinnspiel jederzeit ohne
-            Vorankündigung zu ändern, zu unterbrechen oder zu beenden, falls dies aus rechtlichen
-            oder technischen Gründen erforderlich ist.
-          </p>
-
-          <h3>Sonstiges</h3>
-          <p>
-            Der Rechtsweg ist ausgeschlossen. Es gilt das Recht der Bundesrepublik Deutschland.
-            Sollten einzelne Bestimmungen dieser Teilnahmebedingungen unwirksam sein oder werden,
-            bleibt die Gültigkeit der übrigen Teilnahmebedingungen hiervon unberührt.
-          </p>
-
-          <p class="terms-note">
-            Dieses Gewinnspiel steht in keiner Verbindung zu Instagram oder Facebook und wird in
-            keiner Weise von diesen Plattformen gesponsert, unterstützt oder organisiert.
-          </p>
-        </div>
-      </details>
-    </div>
-  </section>
+    </section>
+  </main>
 </Layout>
 
 <style>
@@ -252,13 +263,16 @@ import Icon from '@components/Icon.astro';
      Hero Section
      ============================================ */
 
+  main {
+    inline-size: 100%;
+  }
+
   .hero {
     position: relative;
+    z-index: 20;
+    overflow: hidden;
     background: var(--hero-gradient);
     color: var(--text-primary);
-    inline-size: 100%;
-    overflow: hidden;
-    z-index: 20;
   }
 
   .hero-inner {
@@ -266,9 +280,15 @@ import Icon from '@components/Icon.astro';
     margin-inline: auto;
     padding-block: clamp(4rem, 10vh, 8rem) clamp(8rem, 15vh, 12rem);
     padding-inline: 2rem;
+
+    @media (max-width: 640px) {
+      padding-block: clamp(2.5rem, 8vh, 3.5rem) clamp(6rem, 12vh, 7rem);
+      padding-inline: 1.5rem;
+    }
   }
 
   .hero-content {
+    z-index: 20;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -276,36 +296,58 @@ import Icon from '@components/Icon.astro';
     max-inline-size: 900px;
     margin-inline: auto;
     text-align: center;
-    z-index: 20;
+  }
+
+  .hero-logo {
+    @media (max-width: 640px) {
+      inline-size: 48px;
+      block-size: 48px;
+    }
   }
 
   h1 {
-    font-size: clamp(3.5rem, 12vw, 7rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.03em;
     margin-block: 1.5rem;
     padding-block-end: 0.1em;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
     background: var(--gradient-vibrant);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
+
+    @media (max-width: 640px) {
+      margin-block: 1rem;
+      font-size: clamp(3rem, 15vw, 4rem);
+    }
   }
 
   .hero-subtitle {
+    max-inline-size: 600px;
+    margin-block-end: 2rem;
     font-size: var(--text-body-large);
     line-height: var(--leading-relaxed);
     color: var(--text-secondary);
-    margin-block-end: 2rem;
-    max-inline-size: 600px;
+
+    @media (max-width: 640px) {
+      margin-block-end: 1.5rem;
+      font-size: var(--text-body-regular);
+    }
   }
 
   .hero-badges {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    flex-wrap: wrap;
+    inline-size: 100%;
+
+    @media (max-width: 640px) {
+      gap: 0.75rem;
+    }
   }
 
   /* ============================================
@@ -314,19 +356,34 @@ import Icon from '@components/Icon.astro';
 
   .waffle-bridge {
     position: relative;
-    margin-block: clamp(-18rem, -30vw, -24rem) clamp(-16rem, -22vw, -18rem);
+    z-index: 10;
     display: flex;
     justify-content: center;
+    /* Desktop default (fixed syntax: MIN, PREFERRED, MAX) */
+    margin-block: clamp(-20rem, -22vw, -16rem) clamp(-18rem, -22vw, -10rem);
     padding-inline: 2rem;
-    z-index: 10;
+
+    @media (max-width: 1024px) {
+      margin-block: clamp(-20rem, -28vw, -16rem) clamp(-12rem, -24vw, -10rem);
+    }
+
+    @media (max-width: 640px) {
+      margin-block: clamp(-12rem, -24vw, -8rem) clamp(-10rem, -18vw, -4rem);
+      padding-inline: 1.5rem;
+    }
   }
 
   .waffle-card {
     position: relative;
+    overflow: hidden;
     inline-size: min(1200px, 92vw);
     aspect-ratio: 16 / 11;
     border-radius: clamp(var(--radius-card), 3vw, 40px);
-    overflow: hidden;
+
+    @media (max-width: 640px) {
+      inline-size: min(1200px, 95vw);
+      aspect-ratio: 16 / 12;
+    }
 
     & .us-scene {
       inline-size: 100%;
@@ -346,24 +403,38 @@ import Icon from '@components/Icon.astro';
     max-inline-size: var(--container-max-width);
     margin-inline: auto;
     padding-inline: 2rem;
+
+    @media (max-width: 640px) {
+      padding-inline: 1.5rem;
+    }
   }
 
   .section-header {
-    text-align: center;
     margin-block-end: clamp(3rem, 6vw, 5rem);
+    text-align: center;
+
+    @media (max-width: 640px) {
+      margin-block-end: clamp(2.5rem, 5vw, 3.5rem);
+    }
 
     & h2 {
+      margin-block: 0 0.75rem;
       font-size: var(--text-heading-large);
       font-weight: 800;
       letter-spacing: var(--tracking-tight);
       color: var(--text-primary);
-      margin-block: 0 0.75rem;
+      text-wrap: balance;
+
+      @media (max-width: 640px) {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+      }
     }
 
     & p {
+      margin: 0;
       font-size: var(--text-body-large);
       color: var(--text-secondary);
-      margin: 0;
+      text-wrap: pretty;
     }
   }
 
@@ -372,68 +443,75 @@ import Icon from '@components/Icon.astro';
      ============================================ */
 
   .contest {
-    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
     padding-block: clamp(6rem, 12vw, 10rem);
-    inline-size: 100%;
+    background: rgba(255, 255, 255, 0.05);
+
+    @media (max-width: 640px) {
+      padding-block: clamp(4rem, 10vw, 6rem);
+    }
 
     & .section-header h2 {
       font-size: clamp(2rem, 5vw, 3rem);
     }
 
-    & :global(p) {
-      font-size: var(--text-body-regular);
-      color: var(--text-secondary);
-      line-height: var(--leading-relaxed);
+    /* Direct children styling (no :global needed for slotted content in Astro if structured correctly) */
+    & p {
       margin-block: 0 1rem;
+      font-size: var(--text-body-regular);
+      line-height: var(--leading-relaxed);
+      color: var(--text-secondary);
+      text-wrap: pretty;
 
       &:last-child {
         margin-block-end: 0;
       }
     }
 
-    & :global(.hint) {
+    & .hint {
+      margin-block-start: 1.25rem;
       font-size: var(--text-body-small);
       color: var(--text-muted);
-      margin-block-start: 1.25rem;
     }
 
-    & :global(.social-link) {
+    & .social-link {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem 1rem;
+      min-block-size: 44px;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid color-mix(in oklch, var(--color-violet-400) 20%, transparent);
       border-radius: var(--radius-pill);
+      background: color-mix(in oklch, var(--color-violet-400) 5%, transparent);
       font-size: 0.95rem;
       font-weight: 600;
       line-height: 1;
       color: var(--color-violet-300);
       text-decoration: none;
       transition: all var(--transition-fast);
-      border: 1px solid color-mix(in oklch, var(--color-violet-400) 20%, transparent);
-      background: color-mix(in oklch, var(--color-violet-400) 5%, transparent);
 
       &:hover {
-        background: color-mix(in oklch, var(--color-violet-400) 15%, transparent);
-        border-color: var(--color-violet-400);
         transform: translateY(-2px);
+        border-color: var(--color-violet-400);
+        background: color-mix(in oklch, var(--color-violet-400) 15%, transparent);
       }
 
       & .social-icon {
+        flex-shrink: 0;
         inline-size: 0.95em;
         block-size: 0.95em;
-        flex-shrink: 0;
       }
 
       & .external-icon {
-        inline-size: 0.85em;
-        block-size: 0.85em;
         flex-shrink: 0;
         margin-inline-start: 0.15rem;
+        inline-size: 0.85em;
+        block-size: 0.85em;
         opacity: 0.7;
       }
     }
 
-    & :global(.social-link-instagram) {
+    & .social-link-instagram {
       background: var(--gradient-vibrant-subtle);
       border-color: color-mix(in oklch, var(--color-orange-600) 30%, transparent);
       box-shadow: var(--shadow-glow-purple);
@@ -445,11 +523,11 @@ import Icon from '@components/Icon.astro';
       }
     }
 
-    & :global(.card-action) {
-      margin-block-start: 1.25rem;
+    & .card-action {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
+      margin-block-start: 1.25rem;
     }
   }
 
@@ -459,6 +537,9 @@ import Icon from '@components/Icon.astro';
     gap: 2rem;
     max-inline-size: 800px;
     margin-inline: auto;
+    padding: 0;
+    list-style: none;
+    container-type: inline-size;
   }
 
   /* ============================================
@@ -466,29 +547,50 @@ import Icon from '@components/Icon.astro';
      ============================================ */
 
   .prizes {
-    background: var(--color-black);
+    inline-size: 100%;
     padding-block: clamp(6rem, 12vw, 10rem);
+    background: var(--color-black);
+
+    & .container {
+      max-inline-size: 1400px;
+    }
   }
 
   .prize-podium {
     display: grid;
     grid-template-columns: 1fr 1.2fr 1fr;
     gap: 2rem;
-    max-inline-size: 1100px;
-    margin-inline: auto;
     align-items: end;
+    margin-inline: auto;
+    padding: 0;
+    list-style: none;
+    container-type: inline-size;
+
+    @media (max-width: 1024px) {
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-inline-size: 500px;
+    }
   }
 
   .prize {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    padding: 2rem;
-    transition: all var(--transition-base);
-    box-shadow: var(--shadow-card);
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-base);
+
+    @media (max-width: 640px) {
+      padding: 1.75rem 1.5rem;
+    }
 
     &:hover {
       transform: translateY(-4px);
@@ -497,12 +599,13 @@ import Icon from '@components/Icon.astro';
     }
 
     & h3 {
+      margin: 0;
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text-primary);
-      margin: 0;
-      letter-spacing: var(--tracking-tight);
       line-height: 1.2;
+      letter-spacing: var(--tracking-tight);
+      color: var(--text-primary);
+      text-wrap: balance;
     }
   }
 
@@ -519,6 +622,16 @@ import Icon from '@components/Icon.astro';
     );
     box-shadow: var(--shadow-glow-purple-intense);
 
+    @media (max-width: 1024px) {
+      min-block-size: 460px;
+    }
+
+    @media (max-width: 640px) {
+      order: 1;
+      min-block-size: auto;
+      padding: 2.25rem 1.75rem;
+    }
+
     &:hover {
       transform: translateY(-6px) scale(1.02);
       border-color: color-mix(in oklch, var(--color-violet-400) 70%, transparent);
@@ -532,24 +645,38 @@ import Icon from '@components/Icon.astro';
       font-size: 2rem;
       font-weight: 800;
       letter-spacing: -0.03em;
+
+      @media (max-width: 640px) {
+        font-size: clamp(1.5rem, 5vw, 1.875rem);
+      }
     }
 
     & .prize-rank {
       inline-size: 4rem;
       block-size: 4rem;
-      font-size: 2rem;
-      background: var(--gradient-vibrant);
-      border: 2px solid color-mix(in oklch, var(--color-violet-400) 40%, transparent);
       margin-block-end: 1rem;
+      font-size: 2rem;
+      border: 2px solid color-mix(in oklch, var(--color-violet-400) 40%, transparent);
+      background: var(--gradient-vibrant);
+
+      @media (max-width: 640px) {
+        inline-size: 3.5rem;
+        block-size: 3.5rem;
+        font-size: 1.75rem;
+      }
     }
 
     & .prize-value-wrapper .prize-value {
       font-size: 3rem;
       font-weight: 900;
       background: var(--gradient-vibrant);
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
+
+      @media (max-width: 640px) {
+        font-size: clamp(2rem, 8vw, 2.75rem);
+      }
     }
   }
 
@@ -568,6 +695,15 @@ import Icon from '@components/Icon.astro';
       0 6px 30px color-mix(in oklch, var(--color-gray-500) 15%, transparent),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
+    @media (max-width: 1024px) {
+      min-block-size: 380px;
+    }
+
+    @media (max-width: 640px) {
+      order: 2;
+      min-block-size: auto;
+    }
+
     &:hover {
       transform: translateY(-5px);
       border-color: color-mix(in oklch, var(--color-gray-500) 50%, transparent);
@@ -578,27 +714,41 @@ import Icon from '@components/Icon.astro';
 
     & h3 {
       font-size: 1.625rem;
+
+      @media (max-width: 640px) {
+        font-size: clamp(1.35rem, 4.5vw, 1.625rem);
+      }
     }
 
     & .prize-rank {
       inline-size: 3.5rem;
       block-size: 3.5rem;
       font-size: 1.5rem;
+      border: 1.5px solid color-mix(in oklch, var(--color-gray-500) 40%, transparent);
       background: linear-gradient(
         135deg,
         color-mix(in oklch, var(--color-gray-500) 40%, transparent),
         color-mix(in oklch, var(--color-gray-600) 25%, transparent)
       );
-      border: 1.5px solid color-mix(in oklch, var(--color-gray-500) 40%, transparent);
       box-shadow:
         0 0 15px color-mix(in oklch, var(--color-gray-500) 15%, transparent),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+      @media (max-width: 640px) {
+        inline-size: 3rem;
+        block-size: 3rem;
+        font-size: 1.35rem;
+      }
     }
 
     & .prize-value-wrapper .prize-value {
       font-size: 2.25rem;
       font-weight: 800;
       color: var(--color-gray-400);
+
+      @media (max-width: 640px) {
+        font-size: clamp(1.75rem, 6vw, 2.25rem);
+      }
     }
   }
 
@@ -616,6 +766,15 @@ import Icon from '@components/Icon.astro';
       0 4px 20px color-mix(in oklch, var(--color-orange-700) 12%, transparent),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
+    @media (max-width: 1024px) {
+      min-block-size: 380px;
+    }
+
+    @media (max-width: 640px) {
+      order: 3;
+      min-block-size: auto;
+    }
+
     &:hover {
       transform: translateY(-3px);
       border-color: color-mix(in oklch, var(--color-orange-700) 45%, transparent);
@@ -627,27 +786,41 @@ import Icon from '@components/Icon.astro';
     & h3 {
       font-size: 1.375rem;
       font-weight: 600;
+
+      @media (max-width: 640px) {
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+      }
     }
 
     & .prize-rank {
       inline-size: 3rem;
       block-size: 3rem;
       font-size: 1.125rem;
+      border: 1px solid color-mix(in oklch, var(--color-orange-700) 40%, transparent);
       background: linear-gradient(
         135deg,
         color-mix(in oklch, var(--color-orange-700) 35%, transparent),
         color-mix(in oklch, var(--color-orange-800) 25%, transparent)
       );
-      border: 1px solid color-mix(in oklch, var(--color-orange-700) 40%, transparent);
       box-shadow:
         0 0 12px color-mix(in oklch, var(--color-orange-700) 15%, transparent),
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+      @media (max-width: 640px) {
+        inline-size: 2.75rem;
+        block-size: 2.75rem;
+        font-size: 1.125rem;
+      }
     }
 
     & .prize-value-wrapper .prize-value {
       font-size: 1.75rem;
       font-weight: 700;
       color: var(--color-orange-400);
+
+      @media (max-width: 640px) {
+        font-size: clamp(1.5rem, 5vw, 1.875rem);
+      }
     }
   }
 
@@ -655,28 +828,27 @@ import Icon from '@components/Icon.astro';
   .prize-rank {
     display: grid;
     place-items: center;
-    font-weight: 800;
-    border-radius: 50%;
-    background: var(--gradient-vibrant-subtle);
-    color: var(--text-primary);
-    border: 1px solid color-mix(in oklch, var(--color-orange-600) 30%, transparent);
-    box-shadow: var(--shadow-glow-purple);
     margin-block-end: 0.5rem;
+    border-radius: 50%;
+    font-weight: 800;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-glow-purple);
   }
 
   .prize-desc {
-    font-size: var(--text-body-regular);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    margin: 0;
     flex: 1;
+    margin: 0;
+    font-size: var(--text-body-regular);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    text-wrap: pretty;
   }
 
   .prize-value-wrapper {
-    margin-block-start: auto;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    margin-block-start: auto;
   }
 
   .prize-value-label {
@@ -692,30 +864,23 @@ import Icon from '@components/Icon.astro';
     color: var(--text-primary);
   }
 
-  .prize-count {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.375rem 0.625rem;
-    border-radius: var(--radius-pill);
-    font-size: 0.8rem;
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-    margin-block-start: 0.5rem;
-    inline-size: fit-content;
-  }
-
   .legal-text {
-    text-align: center;
-    font-size: var(--text-body-small);
-    color: var(--text-muted);
-    line-height: var(--leading-relaxed);
+    max-inline-size: 600px;
+    margin-inline: auto;
     margin-block-start: 3rem;
     padding-block-start: 2rem;
     border-block-start: 1px solid var(--border);
-    max-inline-size: 600px;
-    margin-inline: auto;
+    text-align: center;
+    font-size: var(--text-body-small);
+    line-height: var(--leading-relaxed);
+    color: var(--text-muted);
+    text-wrap: pretty;
+
+    @media (max-width: 640px) {
+      margin-block-start: 2.5rem;
+      padding-block-start: 1.5rem;
+      font-size: 0.8125rem;
+    }
   }
 
   /* ============================================
@@ -727,13 +892,25 @@ import Icon from '@components/Icon.astro';
     max-inline-size: 800px;
     margin-inline: auto;
     margin-block-start: 3rem;
-    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
+    background: var(--surface);
     transition: border-color var(--transition-base);
+
+    @media (max-width: 640px) {
+      margin-block-start: 2.5rem;
+    }
 
     &:hover {
       border-color: var(--border-bright);
+    }
+
+    &[open] .terms-summary::after {
+      transform: rotate(-180deg);
+    }
+
+    &[open] .terms-summary {
+      border-block-end: 1px solid var(--border);
     }
   }
 
@@ -751,6 +928,11 @@ import Icon from '@components/Icon.astro';
     user-select: none;
     transition: color var(--transition-base);
 
+    @media (max-width: 640px) {
+      padding: 1rem 1.25rem;
+      font-size: var(--text-body-small);
+    }
+
     &::-webkit-details-marker {
       display: none;
     }
@@ -758,10 +940,10 @@ import Icon from '@components/Icon.astro';
     &::after {
       content: '▼';
       display: inline-block;
+      margin-inline-start: 0.5rem;
       font-size: 0.75em;
       color: var(--text-muted);
       transition: transform var(--transition-base);
-      margin-inline-start: 0.5rem;
     }
 
     &:hover {
@@ -775,32 +957,38 @@ import Icon from '@components/Icon.astro';
     }
   }
 
-  .terms-details[open] .terms-summary::after {
-    transform: rotate(-180deg);
-  }
-
-  .terms-details[open] .terms-summary {
-    border-block-end: 1px solid var(--border);
-  }
-
   .terms-content {
     padding: 2rem;
 
+    @media (max-width: 640px) {
+      padding: 1.5rem;
+    }
+
     & h2 {
+      margin-block: 0 2rem;
       font-size: var(--text-heading-large);
       font-weight: 800;
       letter-spacing: var(--tracking-tight);
       color: var(--text-primary);
-      margin-block: 0 2rem;
       text-align: center;
+
+      @media (max-width: 640px) {
+        margin-block-end: 1.5rem;
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
     }
 
     & h3 {
+      margin-block: 2.5rem 1rem;
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text-primary);
-      margin-block: 2.5rem 1rem;
       letter-spacing: var(--tracking-tight);
+      color: var(--text-primary);
+
+      @media (max-width: 640px) {
+        margin-block: 2rem 0.875rem;
+        font-size: clamp(1.25rem, 5vw, 1.5rem);
+      }
 
       &:first-child {
         margin-block-start: 0;
@@ -808,10 +996,15 @@ import Icon from '@components/Icon.astro';
     }
 
     & p {
-      font-size: var(--text-body-regular);
-      color: var(--text-secondary);
-      line-height: var(--leading-relaxed);
       margin-block: 0 1rem;
+      font-size: var(--text-body-regular);
+      line-height: var(--leading-relaxed);
+      color: var(--text-secondary);
+      text-wrap: pretty;
+
+      @media (max-width: 640px) {
+        font-size: var(--text-body-small);
+      }
 
       &:last-child {
         margin-block-end: 0;
@@ -823,200 +1016,10 @@ import Icon from '@components/Icon.astro';
     margin-block-start: 3rem !important;
     padding-block-start: 2rem;
     border-block-start: 1px solid var(--border);
-    font-size: var(--text-body-small);
-    color: var(--text-muted);
+    font-size: var(
+      --text-body-small
+    ) !important; /* Enforce size in case it's overridden by generic p rule */
     font-style: italic;
-  }
-
-  /* ============================================
-     Container Queries - Components respond to container width
-     ============================================ */
-
-  .hero-badges {
-    container-type: inline-size;
-  }
-
-  .contest-cards {
-    container-type: inline-size;
-  }
-
-  .prize-podium {
-    container-type: inline-size;
-  }
-
-  /* ============================================
-     Responsive Design - 3 Breakpoints Max
-     ============================================ */
-
-  /* Tablet & Small Desktop (641px - 1024px) */
-  @media (max-width: 1024px) {
-    .prize-podium {
-      gap: 1.5rem;
-    }
-
-    .prize-first {
-      min-block-size: 460px;
-    }
-
-    .prize-second,
-    .prize-third {
-      min-block-size: 380px;
-    }
-  }
-
-  /* Mobile & Small Tablets (0 - 640px) */
-  @media (max-width: 640px) {
-    .hero-inner {
-      padding-block: clamp(2.5rem, 8vh, 3.5rem) clamp(6rem, 12vh, 7rem);
-      padding-inline: 1.5rem;
-    }
-
-    .hero-logo {
-      inline-size: 48px;
-      block-size: 48px;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 15vw, 4rem);
-      margin-block: 1rem;
-    }
-
-    .hero-subtitle {
-      font-size: var(--text-body-regular);
-      margin-block-end: 1.5rem;
-    }
-
-    .hero-badges {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.75rem;
-    }
-
-    .waffle-bridge {
-      margin-block: clamp(-14rem, -25vw, -16rem) clamp(-10rem, -18vw, -12rem);
-      padding-inline: 1.5rem;
-    }
-
-    .waffle-card {
-      aspect-ratio: 16 / 12;
-      inline-size: min(1200px, 95vw);
-    }
-
-    .container {
-      padding-inline: 1.5rem;
-    }
-
-    .section-header {
-      margin-block-end: clamp(2.5rem, 5vw, 3.5rem);
-
-      & h2 {
-        font-size: clamp(1.75rem, 8vw, 2.5rem);
-      }
-    }
-
-    .contest {
-      padding-block: clamp(4rem, 10vw, 6rem);
-    }
-
-    .prize-podium {
-      grid-template-columns: 1fr;
-      max-inline-size: 500px;
-      gap: 1.5rem;
-    }
-
-    .prize {
-      padding: 1.75rem 1.5rem;
-    }
-
-    .prize-first {
-      order: 1;
-      min-block-size: auto;
-      padding: 2.25rem 1.75rem;
-
-      & h3 {
-        font-size: clamp(1.5rem, 5vw, 1.875rem);
-      }
-
-      & .prize-rank {
-        inline-size: 3.5rem;
-        block-size: 3.5rem;
-        font-size: 1.75rem;
-      }
-
-      & .prize-value-wrapper .prize-value {
-        font-size: clamp(2rem, 8vw, 2.75rem);
-      }
-    }
-
-    .prize-second {
-      order: 2;
-      min-block-size: auto;
-
-      & h3 {
-        font-size: clamp(1.35rem, 4.5vw, 1.625rem);
-      }
-
-      & .prize-rank {
-        inline-size: 3rem;
-        block-size: 3rem;
-        font-size: 1.35rem;
-      }
-
-      & .prize-value-wrapper .prize-value {
-        font-size: clamp(1.75rem, 6vw, 2.25rem);
-      }
-    }
-
-    .prize-third {
-      order: 3;
-      min-block-size: auto;
-
-      & h3 {
-        font-size: clamp(1.25rem, 4vw, 1.5rem);
-      }
-
-      & .prize-rank {
-        inline-size: 2.75rem;
-        block-size: 2.75rem;
-        font-size: 1.125rem;
-      }
-
-      & .prize-value-wrapper .prize-value {
-        font-size: clamp(1.5rem, 5vw, 1.875rem);
-      }
-    }
-
-    .legal-text {
-      font-size: 0.8125rem;
-      margin-block-start: 2.5rem;
-      padding-block-start: 1.5rem;
-    }
-
-    .terms-details {
-      margin-block-start: 2.5rem;
-    }
-
-    .terms-summary {
-      padding: 1rem 1.25rem;
-      font-size: var(--text-body-small);
-    }
-
-    .terms-content {
-      padding: 1.5rem;
-
-      & h2 {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-        margin-block-end: 1.5rem;
-      }
-
-      & h3 {
-        font-size: clamp(1.25rem, 5vw, 1.5rem);
-        margin-block: 2rem 0.875rem;
-      }
-
-      & p {
-        font-size: var(--text-body-small);
-      }
-    }
+    color: var(--text-muted) !important;
   }
 </style>

@@ -89,6 +89,13 @@ Tools: `take_snapshot()`, `take_screenshot(format?, uid?, fullPage?, quality?)`
 - Can screenshot specific elements by passing `uid` parameter
 - Supports full-page screenshots with `fullPage: true`
 
+**Screenshot Best Practices:**
+
+- **Always use WebP format** with quality 80 to minimize file sizes: `take_screenshot({ format: 'webp', quality: 80 })`
+- WebP provides excellent compression with minimal visual quality loss
+- Only use PNG format if you need lossless quality or transparency
+- Adjust quality parameter (0-100) if needed: higher = better quality but larger files
+
 **5. Form Interaction Testing** (Optional - useful for quick verification)
 
 Tools: `fill(uid, value)`, `fill_form(elements)`, `click(uid)`, `hover(uid)`
