@@ -7,6 +7,15 @@
   /* Sizes */
   --container-max-width: 90rem;
 
+  /* Spacing Tokens - Fluid Responsive */
+  --space-xs: clamp(0.5rem, 2vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 3vw, 1rem);
+  --space-md: clamp(1rem, 4vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 5vw, 2rem);
+  --space-xl: clamp(2rem, 6vw, 3rem);
+  --space-2xl: clamp(3rem, 8vw, 4rem);
+  --space-3xl: clamp(4rem, 10vw, 6rem);
+
   /* Colors - Base */
   --color-white: #fff;
   --color-black: #000;
@@ -85,6 +94,7 @@
     #9a3885 74.88%,
     #5b429a 99.76%
   );
+
   --gradient-vibrant-subtle: linear-gradient(
     115deg,
     rgba(234, 106, 36, 0.2) 0.24%,
@@ -93,6 +103,11 @@
     rgba(154, 56, 133, 0.15) 74.88%,
     rgba(91, 66, 154, 0.2) 99.76%
   );
+
+  /* Transitions */
+
+  --transition-colors:
+    color 0.25s ease-in-out, background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 
   /* Dark Theme - Surfaces & Borders */
   --surface: rgba(255, 255, 255, 0.03);
@@ -128,7 +143,8 @@
   --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.2);
   --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.3);
   --shadow-glow-purple: 0 0 20px rgba(155, 92, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-  --shadow-glow-purple-intense: 0 8px 40px rgba(155, 92, 255, 0.25), 0 0 80px rgba(155, 92, 255, 0.15),
+  --shadow-glow-purple-intense:
+    0 8px 40px rgba(155, 92, 255, 0.25), 0 0 80px rgba(155, 92, 255, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
   /* Background Colors */
@@ -145,4 +161,29 @@
 
 body {
   font-family: sans-serif;
+}
+
+/* Layout Primitives */
+
+/* Wrapper: Full-width container for sections */
+.wrapper {
+  width: 100%;
+}
+
+/* Container: Constrains width, centers content, adds responsive padding */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @container (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Full-bleed: Breaks out of container to viewport edges */
+.full-bleed {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
 }

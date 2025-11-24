@@ -1,11 +1,91 @@
 ---
 import Logo from '@components/Logo.astro';
 import Icon from '@components/Icon.astro';
+import UnicornStudio from '@components/UnicornStudio.astro';
 
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer">
+<footer class="wrapper">
+  {/* Footer Content */}
+  <div class="container footer-content">
+    {/* About & CTA */}
+    <nav class="footer-menu">
+      <div class="menu-column">
+        <Logo class="logo" />
+        <p>
+          Seit 2004 haben bei DÜS Eckert in Düsseldorf und Essen über 30.000 Menschen Deutsch
+          gelernt. Unser gesamtes Team hat ein einziges Ziel: Dass Menschen ihre DTZ-Prüfung
+          bestehen und hier ein Leben aufbauen können. <br /> Wir machen nur eins: Integrationskurse,
+          die funktionieren.
+        </p>
+      </div>
+      <div class="menu-column">
+        <div class="link-group">
+          <h2>Events</h2>
+          <ul>
+            <li><a href="/">Waffeltag 2025</a></li>
+          </ul>
+        </div>
+        <div class="link-group">
+          <h2>Standorte</h2>
+          <ul>
+            <li><a href="https://dues-eckert.com/locations/duesseldorf">Düsseldorf</a></li>
+            <li><a href="https://dues-eckert.com/locations/essen">Essen</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="menu-column">
+        <div class="link-group">
+          <h2>Folge uns auf</h2>
+
+          {/* Social Icons */}
+          <div class="social-icons">
+            <a
+              class="footer-social-link"
+              href="https://instagram.com/dues.eckert"
+              aria-label="DÜS Eckert auf Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="instagram_logo" size="1.5rem" />
+            </a>
+            <a
+              class="footer-social-link"
+              href="https://www.facebook.com/dues.eckert"
+              aria-label="DÜS Eckert auf Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="facebook_logo" size="1.5rem" />
+            </a>
+            <a
+              class="footer-social-link"
+              href="https://www.linkedin.com/company/dueseckert/"
+              aria-label="DÜS Eckert auf LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="linkedin_logo" size="1.5rem" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {/* Bottom Bar: Copyright | Legal Links */}
+    <div class="bottom-bar">
+      <p>
+        © {currentYear} DÜS Eckert Spracheninstitut GmbH
+      </p>
+
+      <nav class="legal-links link-group">
+        <a href="https://dues-eckert.com/de/impressum">Impressum</a>
+        <a href="https://dues-eckert.com/de/datenschutz">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+
   {/* Unicorn Studio Canvas - Animated gradient background */}
   <div
     class="unicorn-canvas"
@@ -17,311 +97,207 @@ const currentYear = new Date().getFullYear();
     data-us-alttext="Animated footer background with flowing gradients"
   >
   </div>
-
-  {/* Footer Content */}
-  <div class="footer-content">
-    {/* About & CTA */}
-    <div class="footer-main">
-      {/* Social Icons */}
-      <div class="social-icons">
-        <a
-          href="https://instagram.com/dues.eckert"
-          class="social-icon"
-          aria-label="DÜS Eckert auf Instagram"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="instagram_logo" class="" />
-        </a>
-        <a
-          href="https://www.facebook.com/dues.eckert"
-          class="social-icon"
-          aria-label="DÜS Eckert auf Facebook"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="facebook_logo" class="" />
-        </a>
-        <a
-          href="https://www.linkedin.com/company/dueseckert/"
-          class="social-icon"
-          aria-label="DÜS Eckert auf LinkedIn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="linkedin_logo" class="" />
-        </a>
-      </div>
-      <p class="about-text">
-        Seit 2004 haben bei DÜS Eckert in Düsseldorf und Essen über 30.000 Menschen Deutsch gelernt.
-        Unser gesamtes Team hat ein einziges Ziel: Dass Menschen ihre DTZ-Prüfung bestehen und hier
-        ein Leben aufbauen können. <br /> Wir machen nur eins: Integrationskurse, die funktionieren.
-      </p>
-      <a href="https://dues-eckert.com" class="cta-button" target="_blank" rel="noopener">
-        Hauptwebsite besuchen
-      </a>
-    </div>
-
-    {/* Hero Logo - Huge typography treatment */}
-    <div class="hero-logo">
-      <Logo textOnly class="logo-text" />
-    </div>
-
-    {/* Bottom Bar: Copyright | Legal Links */}
-    <div class="footer-bottom">
-      <p class="brand-copyright">
-        © {currentYear} DÜS Eckert Spracheninstitut GmbH
-      </p>
-
-      <nav class="legal-links">
-        <a href="https://dues-eckert.com/de/impressum" class="legal-link"> Impressum </a>
-        <span class="separator">•</span>
-        <a href="https://dues-eckert.com/de/datenschutz" class="legal-link"> Datenschutz </a>
-      </nav>
-    </div>
-  </div>
 </footer>
+<UnicornStudio />
 
 <style>
-  .footer {
+  :root {
+    --color-text-primary: var(--color-white);
+    --color-text-secondary: oklch(from var(--color-gray-200) l c h / 80%);
+  }
+
+  footer {
     position: relative;
-    width: 100%;
-    min-height: 40rem;
-    background-color: #1a1a1a;
-    overflow: hidden;
-    margin-top: 6rem;
     display: flex;
     flex-direction: column;
-  }
+    padding-block: 1rem;
+    color: var(--color-text-primary);
+    container-type: inline-size;
 
-  .unicorn-canvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200%;
-    height: 200%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-  }
-
-  .unicorn-canvas::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    pointer-events: none;
-  }
-
-  .unicorn-canvas > canvas {
-    pointer-events: none;
+    @media (min-width: 768px) {
+    }
+    /* If you need breakpoints, use @media here,
+    since the container can't query itself
+    – a container query wouldn't work on this top level element.
+   You'd have to set a container-type on the <body> element,
+  which isn't recommended. */
   }
 
   .footer-content {
     position: relative;
-    z-index: 1;
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 4rem 2rem 2rem;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 3rem;
-  }
-
-  /* Main content area */
-  .footer-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 2rem;
-    text-align: center;
-    max-width: 42rem;
-    margin: 0 auto;
+    z-index: 1;
+    padding-block: 1rem;
+
+    @container (min-width: 768px) {
+      padding-block: 2rem;
+      min-height: 40rem;
+    }
   }
 
-  .about-text {
-    font-size: var(--text-body-large);
-    line-height: var(--leading-relaxed);
-    color: var(--text-secondary);
-    margin: 0;
+  /* Footer Navigation */
+
+  .menu-column:nth-child(1) {
+    grid-area: about;
+  }
+  .menu-column:nth-child(2) {
+    grid-area: links;
+  }
+  .menu-column:nth-child(3) {
+    grid-area: social;
   }
 
-  /* CTA Button - matching HashtagGroup style */
+  .footer-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'about about'
+      'links social';
+    gap: 2rem;
+
+    @container (min-width: 768px) {
+      grid-template-columns: 1fr repeat(2, minmax(auto, max-content));
+      grid-template-areas: 'about links social';
+      gap: 3rem;
+    }
+  }
+
+  .menu-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 50ch;
+    gap: 2rem;
+    justify-content: left;
+  }
+
+  :where(.link-group a) {
+    /* Using :where() to set a soft default for all links */
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: var(--transition-colors);
+    padding: 0.25rem 0.5rem;
+    margin: -0.25rem -0.5rem;
+
+    &:hover {
+      color: var(--color-text-primary);
+      background-color: oklch(from var(--color-white) l c h / 10%);
+    }
+  }
+
+  h2 {
+    color: var(--color-text-primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-menu p {
+    color: var(--color-text-primary);
+    line-height: 1.5;
+  }
+
+  :global(.logo) {
+    margin-left: -2px;
+    max-height: 4rem;
+  }
+
+  .social-icons {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-top: -0.25rem;
+    margin-left: -0.25rem;
+
+    > a {
+      color: var(--color-text-primary);
+      padding: 0.25rem;
+      margin: 0;
+      border-radius: 0.5rem;
+      transition: var(--transition-colors);
+    }
+
+    > a:hover {
+      background-color: oklch(from var(--color-white) l c h / 20%);
+    }
+  }
+
+  /* CTA Button  */
   .cta-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.95rem;
+    align-self: flex-start;
+    padding: 1rem 2rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
     background: linear-gradient(
-      135deg,
-      color-mix(in oklch, var(--color-white) 8%, transparent),
-      color-mix(in oklch, var(--color-white) 4%, transparent)
+      oklch(from var(--color-white) l c h / 20%),
+      oklch(from var(--color-white) l c h / 10%)
     );
-    border: 1px solid var(--border-bright);
+    border: 1px solid oklch(from var(--color-white) l c h / 10%);
     border-radius: var(--radius-sm);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: var(--transition-colors);
     backdrop-filter: blur(12px);
   }
 
-  .cta-button:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in oklch, var(--color-white) 30%, transparent);
-    background: linear-gradient(
-      135deg,
-      color-mix(in oklch, var(--color-white) 12%, transparent),
-      color-mix(in oklch, var(--color-white) 6%, transparent)
-    );
-  }
-
-  .cta-button:active {
-    transform: translateY(0);
-  }
-
-  /* Social Icons */
-  .social-icons {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    color: var(--color-white);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    border-radius: 10px;
-  }
-
-  .social-icon:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .social-icon svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  /* Hero Logo - Full width at bottom */
-  .hero-logo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.2);
-    align-items: center;
-    padding: 2rem 0 0;
-  }
-
   /* Bottom Bar */
-  .footer-bottom {
+
+  .bottom-bar {
+    margin-top: auto;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     gap: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 0.25px solid oklch(from var(--color-white) l c h / 10%);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
   }
 
-  .brand-copyright {
-    font-size: var(--text-body-small);
-    color: rgba(255, 255, 255, 0.5);
-    line-height: var(--leading-normal);
-    margin: 0;
+  @container (min-width: 768px) {
+    .bottom-bar {
+      flex-direction: row;
+    }
   }
 
   .legal-links {
     display: flex;
+    gap: 2rem;
     align-items: center;
-    gap: 0.75rem;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-  }
 
-  .legal-link {
-    font-size: var(--text-body-small);
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-    white-space: nowrap;
-  }
-
-  .legal-link:hover {
-    color: var(--color-white);
-  }
-
-  .separator {
-    color: rgba(255, 255, 255, 0.3);
-    user-select: none;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .footer {
-      min-height: 36rem;
+    > a {
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: var(--transition-colors);
     }
 
-    .footer-content {
-      padding: 3.5rem 2rem 2rem;
+    > a:hover {
+      color: var(--color-text-primary);
     }
   }
 
-  @media (max-width: 640px) {
-    .footer {
-      min-height: clamp(26rem, 60vh, 32rem);
-    }
+  /* Unicorn Studio Canvas */
+  .unicorn-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
 
-    .footer-content {
-      padding: 2.5rem 1.5rem 1.5rem;
-      gap: 2rem;
-    }
-
-    .hero-logo {
-      padding: 1.25rem 0 0;
-    }
-
-    .footer-main {
-      gap: 1.5rem;
-    }
-
-    .about-text {
-      font-size: var(--text-body-regular);
-    }
-
-    .cta-button {
-      inline-size: 100%;
-    }
-
-    .footer-bottom {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.25rem;
-      padding-block-start: 1.5rem;
-    }
-
-    .legal-links {
-      justify-content: flex-start;
-    }
-
-    .social-icon {
-      inline-size: 36px;
-      block-size: 36px;
-    }
-
-    .social-icon svg {
-      inline-size: 20px;
-      block-size: 20px;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgb(0 0 0 / 30%);
     }
   }
 </style>

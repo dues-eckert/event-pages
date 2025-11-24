@@ -456,6 +456,5 @@ Astro supports Sass, Less, and Stylus via Vite. Install the preprocessor package
 
 - `astro.config.mjs` - Astro configuration with MDX, remark plugins, and TailwindCSS via Vite
 - `src/content.config.ts` - Content collection schemas
-- `src/styles/main.css` - Tailwind v4 theme configuration using `@theme` syntax
 - `tsconfig.json` - TypeScript strict mode with path aliases
 - `wrangler.jsonc` - Cloudflare Pages deployment config

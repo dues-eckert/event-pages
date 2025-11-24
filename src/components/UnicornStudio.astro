@@ -1,0 +1,39 @@
+<script>
+  async function loadAndInitUnicorn() {
+    // Dynamic import - only loads when called, enables code splitting
+    const UnicornStudioModule = await import('../scripts/unicornStudio.umd.js');
+
+    // Handle both default and named exports
+    if (!window.UnicornStudio) {
+      window.UnicornStudio = UnicornStudioModule.default || UnicornStudioModule;
+    }
+
+    // Initialize scenes if not already done
+    if (!window.UnicornStudio.isInitialized) {
+      await window.UnicornStudio.init();
+      window.UnicornStudio.isInitialized = true;
+    }
+  }
+
+  function initUnicornStudio() {
+    // Load after browser is idle for optimal performance
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => loadAndInitUnicorn().catch(console.error));
+    } else {
+      // Fallback for browsers without requestIdleCallback (Safari)
+      setTimeout(() => loadAndInitUnicorn().catch(console.error), 1);
+    }
+  }
+
+  // Initialize on initial page load and after view transitions
+  // This event fires both on first load and after every navigation
+  document.addEventListener('astro:page-load', () => {
+    if (window.UnicornStudio?.isInitialized) {
+      // Re-initialize scenes after navigation
+      window.UnicornStudio.init().catch(console.error);
+    } else {
+      // First load - load module and initialize
+      initUnicornStudio();
+    }
+  });
+</script>

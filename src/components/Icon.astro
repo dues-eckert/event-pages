@@ -1,21 +1,16 @@
 ---
-import { iconPaths, type IconName, type IconFillOpacity } from './iconPaths';
+import { iconPaths, type IconName } from './iconPaths';
 
 // Re-export types for streamlined imports
-export type { IconName, IconFillOpacity };
+export type { IconName };
 
 interface Props {
   name: IconName;
   class?: string;
-  /**
-   * @deprecated iconOpacity prop is currently not supported with the simplified pattern.
-   * All icons use the default opacity from iconPaths.ts (0.15).
-   * If per-instance opacity is needed, revert to the function pattern in iconPaths.ts
-   */
-  iconOpacity?: IconFillOpacity;
+  size?: string;
 }
 
-const { name, class: classList = 'stroke-1.25 size-4', ...attrs } = Astro.props;
+const { name, class: classList, size = '1rem', ...attrs } = Astro.props;
 
 const svgContent = iconPaths[name];
 
@@ -30,6 +25,7 @@ const isFilled = filledIcons.includes(name as any);
   fill="none"
   stroke={isFilled ? 'none' : 'currentColor'}
   viewBox="0 0 14 14"
+  style={`width: ${size}; height: ${size};`}
   {...attrs}
 >
   <Fragment set:html={svgContent} />
