@@ -7,15 +7,14 @@
 }
 
 :where(html) {
-  color-scheme: light dark;
-  hanging-punctuation: first allow-end last;
-  interpolate-size: allow-keywords;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
-  text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  -webkit-tap-highlight-color: transparent;
+  color-scheme: light dark;
   -webkit-font-smoothing: antialiased;
+  hanging-punctuation: first allow-end last;
+  interpolate-size: allow-keywords;
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: none;
 }
 
 :where(html.translated-rtl) {
@@ -29,27 +28,27 @@
 }
 
 :where(body) {
-  min-block-size: 100svb;
   min-inline-size: 300px;
+  min-block-size: 100svb;
 }
 
 :where(canvas, img, picture, svg, video) {
-  block-size: auto;
-  border: none;
   display: block;
   max-inline-size: 100%;
+  block-size: auto;
+  border: none;
 }
 
 :where(button, input, progress, select, textarea) {
-  appearance: none;
-  background: transparent;
-  border: none;
   color: inherit;
   font: inherit;
-  hanging-punctuation: none;
   line-height: inherit;
   text-align: start;
+  background: transparent;
+  border: none;
   touch-action: manipulation;
+  appearance: none;
+  hanging-punctuation: none;
 }
 
 :where(button) {
@@ -75,8 +74,8 @@
 }
 
 :where(abbr[title]) {
-  border: none;
   text-decoration: none;
+  border: none;
 }
 
 :where(cite) {
@@ -92,13 +91,13 @@
 }
 
 :where(dialog, [popover]) {
+  position: fixed;
+  max-inline-size: none;
+  max-block-size: none;
+  margin: auto;
+  color: inherit;
   background: transparent;
   border: none;
-  color: inherit;
-  margin: auto;
-  max-block-size: none;
-  max-inline-size: none;
-  position: fixed;
 }
 
 :where([popover]) {
