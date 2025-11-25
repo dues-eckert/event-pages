@@ -8,6 +8,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "format": "prettier --write .",
+    "lint:css": "stylelint 'src/**/*.{css,astro}'",
+    "lint:css:fix": "stylelint 'src/**/*.{css,astro}' --fix",
     "astro": "astro"
   },
   "dependencies": {
@@ -15,8 +17,13 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.5",
+    "postcss-html": "^1.8.0",
     "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",
+    "stylelint": "^16.26.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-standard": "^39.0.1",
+    "stylelint-order": "^7.0.0",
     "typescript": "^5.9.3",
     "wrangler": "^4.50.0"
   }

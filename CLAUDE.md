@@ -13,6 +13,8 @@ pnpm build        # Build for production
 pnpm preview      # Preview production build
 pnpm check        # Type-check project (astro check)
 pnpm format       # Format all files with Prettier
+pnpm lint:css     # Check CSS property ordering and style rules
+pnpm lint:css:fix # Auto-fix CSS issues (property ordering, etc.)
 ```
 
 **Note**: The dev server is already running. DON'T start it automatically. Use `pnpm check` and `pnpm build` to verify your work.
@@ -443,7 +445,9 @@ Astro supports Sass, Less, and Stylus via Vite. Install the preprocessor package
 
 1. **Type-check**: `pnpm check` - Must pass with 0 errors. If errors occur, report them and get user confirmation (Y/n) before fixing.
 
-2. **Build verification**: `pnpm build` - Verify all routes are static:
+2. **CSS Linting**: `pnpm lint:css` - After making CSS changes, run this to check for property ordering and style violations. Use `pnpm lint:css:fix` to auto-fix most issues. Property ordering violations are warnings, not errors.
+
+3. **Build verification**: `pnpm build` - Verify all routes are static:
    ```
    Expected output:
    ✓ Built in Xms
