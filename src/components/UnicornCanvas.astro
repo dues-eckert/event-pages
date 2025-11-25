@@ -1,0 +1,36 @@
+---
+import UnicornStudio from '@components/UnicornStudio.astro';
+
+interface Props {
+  scene: string;
+  /** The rendering scale of the animation. Defaults to 1 */
+  animationScale?: number;
+  /** The DPI of the animation. Defaults to 1 */
+  animationDPI?: number;
+  altText?: string;
+}
+
+const { scene, animationScale = 1, animationDPI = 1, altText, ...attrs } = Astro.props;
+---
+
+{/* Unicorn Studio Canvas - Animated gradient background */}
+<div
+  class="unicorn-canvas"
+  data-us-project-src={`${scene}`}
+  data-us-scale={`${animationScale}`}
+  data-us-dpi={animationDPI}
+  data-us-lazyload="true"
+  data-us-production="true"
+  data-us-alttext={altText}
+>
+</div>
+
+<UnicornStudio />
+
+<style>
+  div {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+</style>

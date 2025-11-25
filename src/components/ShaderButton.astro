@@ -1,0 +1,33 @@
+---
+import UnicornCanvas from './UnicornCanvas.astro';
+
+interface Props {
+  text: string;
+  href: string;
+}
+
+const { text, href } = Astro.props;
+---
+
+<a href={href}>
+  <span>{text}</span>
+
+  <UnicornCanvas scene="/scenes/shader-button.json" />
+</a>
+
+<style>
+  a {
+    position: relative;
+    padding: 1.5rem 2rem;
+    overflow: hidden;
+    color: var(--color-white);
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  span {
+    position: inherit;
+    z-index: 1;
+  }
+</style>
