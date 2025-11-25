@@ -1,18 +1,96 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import UnicornCanvas from '@components/UnicornCanvas.astro';
+import ShaderButton from '@components/ShaderButton.astro';
 ---
 
 <Layout title="Experiments">
-  <section class="wrapper"><div class="container empty-placeholder"></div></section>
-
-
+  <section class="wrapper hero-experiment">
+    <div class="container empty-placeholder">
+      <div class="hero-content">
+        <h1>Pastel noise. So damn grainy</h1>
+        <p>
+          Overlaying the pastel noise orbs (?) <i>over the text</i> creates an even nicer effect. <br
+          />
+          <span class="text-gray"> It's probably more visible if the text isn't fully black.</span>
+        </p>
+        <div style="margin-top: 1rem;"></div>
+        <ShaderButton text="Start learning" href="" />
+        <div style="margin-bottom: 4rem;"></div>
+        <a class="button" href="">Regular (boring) button</a>
+      </div>
+    </div>
+    <UnicornCanvas scene="/scenes/pastel-noise.json" />
+  </section>
 </Layout>
 
 <style>
-  .empty-placeholder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
+  /* Hero section experiment: Blurry pastel noise */
+  .hero-experiment {
+    position: relative;
+    color: var(--color-black);
+    font-size: 1.25rem;
+    background-color: var(--color-gray-50);
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+
+      /* z-index: 1; */
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
   }
+
+  h1 {
+    font-size: 3.5rem;
+    letter-spacing: -0.04em;
+  }
+
+  .text-gray {
+    color: var(--color-gray-500);
+  }
+
+  .button {
+    padding: 1rem 2rem;
+    color: var(--color-violet-50);
+    line-height: 1;
+    text-decoration: none;
+    background: linear-gradient(to bottom, var(--color-violet-600), var(--color-violet-700));
+    background-color: var(--color-violet-700);
+    border: 1px solid var(--color-violet-500);
+    border-radius: 1rem;
+    transition: var(--transition-colors);
+
+    &:hover {
+      background: linear-gradient(to bottom, var(--color-violet-700), var(--color-violet-800));
+    }
+
+    &::before {
+      position: absolute;
+
+      /* ... */
+      opacity: 0;
+      will-change: opacity;
+      content: '';
+      transition: opacity 0.3s ease;
+    }
+  }
+
+  /* .empty-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+  } */
 </style>
