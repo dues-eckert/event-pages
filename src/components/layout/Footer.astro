@@ -1,6 +1,6 @@
 ---
-import Logo from '@components/Logo.astro';
-import Icon from '@components/Icon.astro';
+import Logo from '@components/ui/Logo.astro';
+import Icon from '@components/ui/Icon.astro';
 import UnicornStudio from '@components/UnicornStudio.astro';
 
 const currentYear = new Date().getFullYear();
@@ -114,8 +114,6 @@ const currentYear = new Date().getFullYear();
     color: var(--color-text-primary);
     container-type: inline-size;
 
-    @media (min-width: 768px) {
-    }
     /* If you need breakpoints, use @media here,
     since the container can't query itself
     – a container query wouldn't work on this top level element.
@@ -125,42 +123,32 @@ const currentYear = new Date().getFullYear();
 
   .footer-content {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 2rem;
     z-index: 1;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2rem;
     padding-block: 1rem;
 
-    @container (min-width: 768px) {
-      padding-block: 2rem;
+    @container (width >= 768px) {
       min-height: 40rem;
+      padding-block: 2rem;
     }
   }
 
   /* Footer Navigation */
 
-  .menu-column:nth-child(1) {
-    grid-area: about;
-  }
-  .menu-column:nth-child(2) {
-    grid-area: links;
-  }
-  .menu-column:nth-child(3) {
-    grid-area: social;
-  }
-
   .footer-menu {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
       'about about'
       'links social';
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 
-    @container (min-width: 768px) {
-      grid-template-columns: 1fr repeat(2, minmax(auto, max-content));
+    @container (width >= 768px) {
       grid-template-areas: 'about links social';
+      grid-template-columns: 1fr repeat(2, minmax(auto, max-content));
       gap: 3rem;
     }
   }
@@ -168,20 +156,33 @@ const currentYear = new Date().getFullYear();
   .menu-column {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    max-width: 50ch;
     gap: 2rem;
+    align-items: flex-start;
     justify-content: left;
+    max-width: 50ch;
+  }
+
+  .menu-column:nth-child(1) {
+    grid-area: about;
+  }
+
+  .menu-column:nth-child(2) {
+    grid-area: links;
+  }
+
+  .menu-column:nth-child(3) {
+    grid-area: social;
   }
 
   :where(.link-group a) {
+    margin: -0.25rem -0.5rem;
+    padding: 0.25rem 0.5rem;
+
     /* Using :where() to set a soft default for all links */
     color: var(--color-text-primary);
     text-decoration: none;
     border-radius: 0.5rem;
     transition: var(--transition-colors);
-    padding: 0.25rem 0.5rem;
-    margin: -0.25rem -0.5rem;
 
     &:hover {
       color: var(--color-text-primary);
@@ -190,10 +191,10 @@ const currentYear = new Date().getFullYear();
   }
 
   h2 {
-    color: var(--color-text-primary);
-    font-weight: 700;
     margin-bottom: 0.5rem;
+    color: var(--color-text-primary);
     font-size: 1rem;
+    font-weight: 700;
   }
 
   ul {
@@ -208,8 +209,8 @@ const currentYear = new Date().getFullYear();
   }
 
   :global(.logo) {
-    margin-left: -2px;
     max-height: 4rem;
+    margin-left: -2px;
   }
 
   .social-icons {
@@ -219,9 +220,9 @@ const currentYear = new Date().getFullYear();
     margin-left: -0.25rem;
 
     > a {
-      color: var(--color-text-primary);
-      padding: 0.25rem;
       margin: 0;
+      padding: 0.25rem;
+      color: var(--color-text-primary);
       border-radius: 0.5rem;
       transition: var(--transition-colors);
     }
@@ -235,8 +236,8 @@ const currentYear = new Date().getFullYear();
   .cta-button {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     align-self: flex-start;
+    justify-content: center;
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
@@ -246,26 +247,26 @@ const currentYear = new Date().getFullYear();
     );
     border: 1px solid oklch(from var(--color-white) l c h / 10%);
     border-radius: var(--radius-sm);
-    transition: var(--transition-colors);
     backdrop-filter: blur(12px);
+    transition: var(--transition-colors);
   }
 
   /* Bottom Bar */
 
   .bottom-bar {
-    margin-top: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
     padding-top: 2rem;
-    border-top: 0.25px solid oklch(from var(--color-white) l c h / 10%);
-    font-size: 1rem;
     color: var(--color-text-secondary);
+    font-size: 1rem;
+    border-top: 0.25px solid oklch(from var(--color-white) l c h / 10%);
   }
 
-  @container (min-width: 768px) {
+  @container (width >= 768px) {
     .bottom-bar {
       flex-direction: row;
     }
@@ -294,10 +295,10 @@ const currentYear = new Date().getFullYear();
     pointer-events: none;
 
     &::after {
-      content: '';
       position: absolute;
       inset: 0;
       background-color: rgb(0 0 0 / 30%);
+      content: '';
     }
   }
 </style>

@@ -17,37 +17,37 @@ const { variant = 'gray' } = Astro.props;
 <style>
   .badge {
     display: inline-flex;
-    align-items: center;
     gap: 0.5rem;
+    align-items: center;
+    inline-size: fit-content;
     padding: 0.625rem 1.25rem;
-    border-radius: var(--radius-pill);
     font-size: clamp(0.875rem, 2cqi, 0.95rem);
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
+    vertical-align: middle;
     border: 1px solid var(--border-bright);
+    border-radius: var(--radius-pill);
     backdrop-filter: blur(12px);
     transition: all var(--transition-fast);
-    vertical-align: middle;
-    inline-size: fit-content;
   }
 
   .badge:hover {
-    transform: translateY(-2px);
     border-color: color-mix(in oklch, var(--color-white) 30%, transparent);
+    transform: translateY(-2px);
   }
 
   .badge-gray {
+    color: var(--text-primary);
     background: linear-gradient(
       135deg,
       color-mix(in oklch, var(--color-white) 8%, transparent),
       color-mix(in oklch, var(--color-white) 4%, transparent)
     );
-    color: var(--text-primary);
   }
 
   .badge-gradient {
-    background: var(--gradient-vibrant-subtle);
     color: var(--text-primary);
+    background: var(--gradient-vibrant-subtle);
     box-shadow: var(--shadow-glow-purple);
   }
 </style>
