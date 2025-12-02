@@ -21,3 +21,19 @@ body {
 :where(p, li, dd, blockquote) {
   text-wrap: pretty;
 }
+
+/* Links */
+:where(a) {
+  color: inherit;
+  text-decoration-color: currentcolor;
+  text-underline-offset: 0.15em;
+  transition: opacity var(--transition-fast, 0.2s ease);
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
