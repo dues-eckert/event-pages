@@ -13,6 +13,9 @@ export const iconPaths = {
   arrow_right_tailless: `
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m4 .5 6.146 6.146a.5.5 0 0 1 0 .708L4 13.5"/>
   `,
+  arrow_left_tailless: `
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m10 .5-6.146 6.146a.5.5 0 0 0 0 .708L10 13.5"/>
+  `,
   book: `
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7 13s1.667-2.5 5.002-2.936C12.549 9.993 13 9.552 13 9V3.5c0-.552-.45-1.007-.997-.936A7.357 7.357 0 0 0 11 2.766"/>
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M10.498.776C7 1.156 7 5.5 7 5.5V13s0-3.927 3.007-4.64c.538-.127.993-.558.993-1.11v-6c0-.276-.227-.503-.502-.474Zm-8.5 1.788C5.333 3 7 5.5 7 5.5V13s-1.667-2.5-5.002-2.936C1.451 9.993 1 9.552 1 9V3.5c0-.552.45-1.007.998-.936Z"/>
@@ -96,8 +99,12 @@ export const iconPaths = {
   linkedin_logo: `
     <path fill="currentColor" d="M11.594 11.594H9.661V8.566c0-.722-.013-1.651-1.006-1.651-1.007 0-1.161.786-1.161 1.599v3.08H5.56V5.367h1.856v.851h.026a2.034 2.034 0 0 1 1.832-1.006c1.96 0 2.321 1.29 2.321 2.966v3.416ZM3.378 4.516a1.122 1.122 0 1 1 0-2.244 1.122 1.122 0 0 1 0 2.244Zm.967 7.079H2.41V5.367h1.935v6.227ZM12.558.476H1.438a.952.952 0 0 0-.963.94v11.167a.953.953 0 0 0 .963.942h11.12a.955.955 0 0 0 .967-.942V1.416a.954.954 0 0 0-.967-.94"/>
   `,
+  heart: `
+    <path fill="currentColor" fill-rule="evenodd" d="M3.794 1c1.015.022 2.108.487 3.208 1.486 1.1-.997 2.19-1.46 3.205-1.48 1.129-.023 2.075.505 2.732 1.281 1.283 1.514 1.567 4.116-.07 5.772l-.002.002-4.247 4.257c-.907.91-2.328.91-3.235 0L1.138 8.06l-.002-.002c-1.64-1.66-1.36-4.264-.077-5.778C1.717 1.505 2.664.977 3.794 1Z" clip-rule="evenodd"/>
+
+  `,
   external_link: `
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M4.083 10.417 10.417 4.083M4.5 4.083h6.333v6.334"/>
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M10.5.5h3v3m0-3-6 6m2-5h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-4"/>
   `,
 } as const;
 

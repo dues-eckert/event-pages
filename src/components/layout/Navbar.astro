@@ -1,0 +1,56 @@
+---
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+import Logo from '@components/ui/Logo.astro';
+---
+
+<header>
+  <nav>
+    <a href="/" class="logo-link">
+      <Logo height={40} class="logo" />
+    </a>
+    <Button href="https://dues-eckert.com" variant="ghost">
+      Hauptwebsite
+      <Icon slot="icon-right" name="external_link" size="0.875em" />
+    </Button>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: absolute;
+    inset-inline: 0;
+    z-index: 100;
+    padding-block: 1rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    max-inline-size: var(--container-max-width);
+    margin-inline: auto;
+    padding-inline: 2rem;
+
+    @media (width <= 640px) {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  .logo-link {
+    display: block;
+    color: var(--color-white);
+    line-height: 0;
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .logo {
+    display: block;
+  }
+</style>

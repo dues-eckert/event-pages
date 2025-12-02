@@ -1,0 +1,148 @@
+---
+/**
+ * Sophisticated button with refined depth and lighting
+ * - 6-layer shadow system for natural depth
+ * - Polymorphic: renders as <a> or <button>
+ * - Supports icon slots on left/right
+ */
+interface Props {
+  variant?: 'default' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+  disabled?: boolean;
+}
+
+const {
+  variant = 'default',
+  size = 'md',
+  href,
+  class: className,
+  disabled = false,
+  ...attrs
+} = Astro.props;
+
+const Element = href ? 'a' : 'button';
+---
+
+<Element
+  href={href}
+  class:list={[className, { ghost: variant === 'ghost', sm: size === 'sm', lg: size === 'lg' }]}
+  disabled={disabled || undefined}
+  {...attrs}
+>
+  <slot name="icon-left" />
+  <slot />
+  <slot name="icon-right" />
+</Element>
+
+<style>
+  a,
+  button {
+    display: inline-flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625em 1.125em;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+
+    /* 5. Text/icon drop-shadow for contrast */
+    text-shadow: 0 1px 2px rgb(0 0 0 / 40%);
+
+    /* 6. Subtle gradient background - barely perceptible */
+    background: linear-gradient(180deg, rgb(255 255 255 / 7%) 0%, rgb(255 255 255 / 3%) 100%);
+    border: none;
+    border-radius: var(--radius-sm);
+
+    /* 6-layer shadow system */
+    box-shadow:
+      /* 1. Outer cut shadow - dark edge to "cut" into surface */
+      0 0.5px 0 0 rgb(0 0 0 / 60%),
+      /* 2. Environmental inner highlight - ambient light from all sides */ inset 0 0 0 1px
+        rgb(255 255 255 / 8%),
+      /* 3. Top light source - primary light from browser chrome */ inset 0 1px 0 0
+        rgb(255 255 255 / 12%),
+      /* 4-6. Depth shadows - 3 layers for natural lighting falloff */ 0 1px 2px rgb(0 0 0 / 30%),
+      0 2px 4px rgb(0 0 0 / 20%),
+      0 4px 8px rgb(0 0 0 / 12%);
+    cursor: pointer;
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast),
+      background var(--transition-fast);
+
+    &:hover {
+      background: linear-gradient(180deg, rgb(255 255 255 / 10%) 0%, rgb(255 255 255 / 5%) 100%);
+      box-shadow:
+        0 0.5px 0 0 rgb(0 0 0 / 60%),
+        inset 0 0 0 1px rgb(255 255 255 / 12%),
+        inset 0 1px 0 0 rgb(255 255 255 / 18%),
+        0 2px 4px rgb(0 0 0 / 35%),
+        0 4px 8px rgb(0 0 0 / 25%),
+        0 8px 16px rgb(0 0 0 / 15%);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      background: linear-gradient(180deg, rgb(255 255 255 / 4%) 0%, rgb(255 255 255 / 2%) 100%);
+      box-shadow:
+        0 0 0 0 rgb(0 0 0 / 60%),
+        inset 0 0 0 1px rgb(255 255 255 / 6%),
+        inset 0 2px 4px rgb(0 0 0 / 20%),
+        0 1px 2px rgb(0 0 0 / 20%);
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 2px solid color-mix(in oklch, var(--color-violet-400) 60%, transparent);
+      outline-offset: 2px;
+    }
+
+    &:disabled,
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  /* Size variants */
+  .sm {
+    padding: 0.5em 0.875em;
+    font-size: 0.8125rem;
+  }
+
+  .lg {
+    padding: 0.75em 1.5em;
+    font-size: 1.0625rem;
+  }
+
+  /* Ghost variant - transparent with subtle border */
+  .ghost {
+    background: transparent;
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 12%),
+      inset 0 1px 0 0 rgb(255 255 255 / 8%),
+      0 1px 2px rgb(0 0 0 / 15%);
+
+    &:hover {
+      background: rgb(255 255 255 / 5%);
+      box-shadow:
+        inset 0 0 0 1px rgb(255 255 255 / 18%),
+        inset 0 1px 0 0 rgb(255 255 255 / 12%),
+        0 2px 4px rgb(0 0 0 / 20%);
+    }
+
+    &:active {
+      background: rgb(255 255 255 / 3%);
+      box-shadow:
+        inset 0 0 0 1px rgb(255 255 255 / 10%),
+        inset 0 1px 2px rgb(0 0 0 / 15%);
+    }
+  }
+</style>

@@ -1,32 +1,55 @@
 ---
 import { iconPaths, type IconName } from './iconPaths';
 
-// Re-export types for streamlined imports
 export type { IconName };
 
 interface Props {
   name: IconName;
   class?: string;
   size?: string;
+  gradient?: boolean;
 }
 
-const { name, class: classList, size = '1rem', ...attrs } = Astro.props;
+const { name, class: classList, size = '1rem', gradient = false, ...attrs } = Astro.props;
 
-const svgContent = iconPaths[name];
+const pathContent = iconPaths[name];
+const isFilled = pathContent.includes('fill="currentColor"');
 
-// Filled icons that shouldn't have a stroke
-const filledIcons = ['instagram_logo', 'facebook_logo', 'linkedin_logo'] as const;
-const isFilled = filledIcons.includes(name as any);
+// Apply gradient to the correct attribute (fill for filled icons, stroke for outlined)
+const svgContent = gradient
+  ? pathContent.replace(
+      isFilled ? /fill="currentColor"/g : /stroke="currentColor"/g,
+      `${isFilled ? 'fill' : 'stroke'}="url(#icon-gradient-vibrant)"`,
+    )
+  : pathContent;
 ---
 
 <svg
-  class={`${classList} shrink-0`}
+  class:list={[classList, 'shrink-0']}
   xmlns="http://www.w3.org/2000/svg"
   fill="none"
-  stroke={isFilled ? 'none' : 'currentColor'}
   viewBox="0 0 14 14"
   style={`width: ${size}; height: ${size};`}
   {...attrs}
 >
+  {
+    gradient && (
+      <defs>
+        <linearGradient id="icon-gradient-vibrant" x1="5%" y1="29%" x2="95%" y2="71%">
+          <stop offset="0%" stop-color="#ea6a24" />
+          <stop offset="25%" stop-color="#d63c5d" />
+          <stop offset="50%" stop-color="#cd3593" />
+          <stop offset="75%" stop-color="#9a3885" />
+          <stop offset="100%" stop-color="#5b429a" />
+        </linearGradient>
+      </defs>
+    )
+  }
   <Fragment set:html={svgContent} />
 </svg>
+
+<style>
+  svg {
+    display: inline-block;
+  }
+</style>

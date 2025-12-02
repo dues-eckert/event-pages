@@ -27,14 +27,24 @@ import waffleTextImage from '../assets/images/waffle-text-2025.webp';
             class="image-waffle-text"
           />
           <h1>Waffeltag <span class="sr-only">&nbsp;2025</span></h1>
+
+          <div class="hero-badges">
+            <Badge variant="gradient">Essen: 16.12.</Badge>
+            <Badge variant="gradient">Düsseldorf: 17.12.</Badge>
+          </div>
           <p class="hero-subtitle">
-            Richtig leckere Waffeln für alle unsere Teilnehmenden. Und ein Gewinnspiel mit 10
-            Preisen. Vielen Dank, dass ihr bei DÜS Eckert lernt.
+            Dieses Jahr schenken wir unseren Teilnehmenden richtig leckere Waffeln. Vielen Dank,
+            dass ihr bei DÜS Eckert lernt. <Icon name="heart" gradient />
+            <br />
+            <br />
+
+            Jeder Kurs kommt zum Waffelstand und darf sich frisch gebackene, leckere Waffeln
+            abholen. So können wir gemeinsam die Vorweihnachtszeit genießen. 🎄
+            <br />
+            <br />
+            Wir belassen es aber nicht dabei. Zusätzlich gibt es ein Gewinnspiel mit 10 tollen Preisen.
+            🎁
           </p>
-          <!-- <div class="hero-badges">
-            <Badge variant="gradient">@dues.eckert</Badge>
-            <Badge>#Waffeltag2025</Badge>
-          </div> -->
         </div>
       </div>
     </section>
@@ -66,8 +76,8 @@ import waffleTextImage from '../assets/images/waffle-text-2025.webp';
           <li>
             <ContestCard number="01" title="Hol dir deine Waffel">
               <p>
-                Am Waffeltag gibt es kostenlose Waffeln für alle Teilnehmenden! Folge uns auf
-                Instagram, um über den genauen Termin und die Gewinnenden informiert zu werden.
+                Es gibt ein festgelegtes Zeitfenster für jeden Kurs. Komm mit deiner Lehrkraft zum
+                Waffelstand und hole dir deine Waffel ab. 🧇
               </p>
               <div class="card-action">
                 <a
@@ -85,7 +95,10 @@ import waffleTextImage from '../assets/images/waffle-text-2025.webp';
           </li>
 
           <li>
-            <ContestCard number="02" title="Teile dein Foto auf Instagram">
+            <ContestCard
+              number="02"
+              title="Folge uns auf Instagram und teile ein Foto mit deiner Waffel"
+            >
               <p>
                 Mach ein kreatives Foto mit deiner Waffel und poste es mit diesen Hashtags. <br />
                 <strong>Wichtig:</strong> Markiere @dues.eckert bitte im Bild, damit wir deinen Post
@@ -138,7 +151,7 @@ import waffleTextImage from '../assets/images/waffle-text-2025.webp';
             <h3>Kostenloses Kursmodul*</h3>
             <p class="prize-desc">
               Ein komplettes Kursmodul (100 Unterrichtsstunden) deiner Wahl, entweder während deines
-              laufenden Kurses oder zusätzliche Prüfungsvorbereitung.
+              laufenden Kurses oder als zusätzliche Prüfungsvorbereitung.
             </p>
             <div class="prize-value-wrapper">
               <div class="prize-value-label">Im Wert von</div>
@@ -295,7 +308,7 @@ import waffleTextImage from '../assets/images/waffle-text-2025.webp';
     padding-inline: 2rem;
 
     @media (width <= 640px) {
-      padding-block: clamp(2.5rem, 8vh, 3.5rem) clamp(6rem, 12vh, 7rem);
+      padding-block: clamp(8rem, 20vh, 10rem) clamp(6rem, 12vh, 7rem);
       padding-inline: 1.5rem;
     }
   }
@@ -338,19 +351,6 @@ import waffleTextImage from '../assets/images/waffle-text-2025.webp';
 
     @media (width <= 640px) {
       margin-block-end: 1.25rem;
-    }
-  }
-
-  .hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    inline-size: 100%;
-
-    @media (width <= 640px) {
-      gap: 0.75rem;
     }
   }
 
@@ -464,7 +464,7 @@ import waffleTextImage from '../assets/images/waffle-text-2025.webp';
     & p {
       margin-block: 0 1rem;
       color: var(--text-secondary);
-      font-size: var(--text-body-regular);
+      font-size: 1.25rem;
       line-height: var(--leading-relaxed);
       text-wrap: pretty;
 
@@ -1026,5 +1026,11 @@ import waffleTextImage from '../assets/images/waffle-text-2025.webp';
 
     font-style: italic;
     border-block-start: 1px solid var(--border);
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 1rem;
+    margin-block-end: 1.5rem;
   }
 </style>

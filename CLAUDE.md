@@ -204,6 +204,7 @@ Register new plugins in `astro.config.mjs` under `markdown.remarkPlugins` or `ma
 ### Astro Component Comments
 
 In `.astro` files:
+
 - **HTML/template section**: Use JSX-style comments (`{/* comment */}`) - stripped from production builds
 - **`<style>` blocks**: Use CSS comments (`/* comment */`) - JSX comments will break Prettier
 - **Avoid HTML comments** (`<!-- -->`) - these are shipped to production
